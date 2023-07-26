@@ -1,0 +1,1188 @@
+﻿@model StartQuran.Models.DataBase.RegistrationFamily
+@{
+
+    Layout = null;
+    var messageTemp = TempData["AlertMessage"] ?? string.Empty;
+
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Bekr Al-Quran - Index</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="~/Site/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="~/Site/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="~/Site/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="~/Site/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="~/Site/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="~/Site/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="~/Site/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="~/Site/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="~/Site/assets/js/tel-input/js/css/intlTelInput.min.css" type="text/css" />
+
+  <!-- Template Main CSS File -->
+  <link href="~/Site/assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Dewi - v4.10.0
+  * Template URL: https://bootstrapmade.com/dewi-free-multi-purpose-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top ">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <h1 class="logo"><img src="~/site/assets/img/Logo.png" style="width:160px"/></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo"><img src="~/Site/assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="#about">About</a></li>
+          <li><a class="nav-link scrollto" href="#services">Services</a></li>
+          <li><a class="nav-link scrollto" href="#team">Team</a></li>
+          <li><a class="nav-link scrollto" href="#Pricing">Pricing</a></li>
+       
+          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          <li class="dropdown">
+                        <a class="nav-link scrollto"><span>Language</span> <i class="bi bi-chevron-down"></i></a>
+                        <ul>
+                            <li><a class="nav-link scrollto" href="/WebSite/index?language=ar">العربية</a></li>
+                            <li><a class="nav-link scrollto" href="#">English</a></li>
+                        </ul>
+                    </li>
+          <li><a class="getstarted scrollto" href="#contact">Start Now</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero">
+    <div class="hero-container" data-aos="fade-up" data-aos-delay="150">
+        <h1>Bekr Al-Quran</h1>
+        <h2>We are a team to learn the Qur'an, the Arabic language and Islamic studies</h2>
+      <div class="d-flex">
+        <a href="#about" class="btn-get-started scrollto">Get Started</a>
+        <a href="~/site/assets/img/BekrAL-Quran.mp4" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
+      </div>
+    </div>
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+      <!-- ======= About Section ======= -->
+      <section id="about" class="about">
+          <div class="container" data-aos="fade-up">
+
+              <div class="row justify-content-end">
+                  <div class="col-lg-11">
+                      <div class="row justify-content-end">
+
+                          <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
+                              <div class="count-box">
+                                  <i class="bi bi-emoji-smile"></i>
+                                  <span data-purecounter-start="0" data-purecounter-end="1000" data-purecounter-duration="1" class="purecounter">+</span>
+                                  <p>Happy Student</p>
+                              </div>
+                          </div>
+
+                          <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
+                              <div class="count-box">
+                                  <i class="bi bi-journal-richtext"></i>
+                                  <span data-purecounter-start="0" data-purecounter-end="5000" data-purecounter-duration="1" class="purecounter">+</span>
+                                  <p>Sessions</p>
+                              </div>
+                          </div>
+
+                          <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
+                              <div class="count-box">
+                                  <i class="bi bi-clock"></i>
+                                  <span data-purecounter-start="0" data-purecounter-end="3" data-purecounter-duration="1" class="purecounter"></span>
+                                  <p>Years of experience</p>
+                              </div>
+                          </div>
+
+                          <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
+                              <div class="count-box">
+                                  <i class="bi bi-award"></i>
+                                  <span data-purecounter-start="0" data-purecounter-end="48" data-purecounter-duration="1" class="purecounter"></span>
+                                  <p>Awards</p>
+                              </div>
+                          </div>
+
+                      </div>
+                  </div>
+              </div>
+
+              <div class="row">
+
+                  <div class="col-lg-6 video-box align-self-baseline" data-aos="zoom-in" data-aos-delay="100">
+                      <img src="~/Site/assets/img/about.jpg" class="img-fluid" alt="">
+                      <a href="~/site/assets/img/BekrAL-Quran.mp4" class="glightbox play-btn mb-4"></a>
+                  </div>
+
+                  <div class="col-lg-6 pt-3 pt-lg-0 content">
+                      <h3>
+                          Live lessons via the Internet, in which the student meets the teacher with audio and video, and the student interacts with the teacher well so that the student can understand and assimilate
+                      </h3>
+                      <p class="fst-italic">
+                          We look forward to learning the Noble Qur’an and facilitating its memorization and adjusting its recitation for every Muslim in the world without much effort
+
+
+                      </p>
+                      <ul>
+                          <li><i class="bx bx-check-double"></i>We allow the student to choose the appropriate class time for the student</li>
+                          <li>
+                              <i class="bx bx-check-double"></i> We allow the student to choose the appropriate package from the number of hours per week
+
+                          </li>
+                          <li>
+                              <i class="bx bx-check-double"></i> We allow the student to choose the appropriate days of the week to study
+                          </li>
+                      </ul>
+                      <p>
+                          It is no secret to anyone the importance of Quranic circles and schools - in society - through which the members of society are raised and taught the Holy Qur’an (reading - intonation - and contemplation) and are brought up on its sublime teachings and etiquette, in a way that benefits them, and the Islamic nation, with goodness in this world and the Hereafter.
+
+
+                      </p>
+                  </div>
+
+              </div>
+
+          </div>
+      </section><!-- End About Section -->
+      <!-- ======= About Boxes Section ======= -->
+      <section id="about-boxes" class="about-boxes">
+          <div class="container" data-aos="fade-up">
+
+              <div class="row">
+                  <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+                      <div class="card">
+                          <img src="~/Site/assets/img/4.png" class="card-img-top" alt="...">
+                          <div class="card-icon">
+                              <i class="ri-movie-2-line"></i>
+                          </div>
+                          <div class="card-body">
+                              <h5 class="card-title"><a href="">Good Learning</a></h5>
+                              <p class="card-text">Live lessons taught by professional professional teachers from Egypt and Our teachers are qualified from Al-Azhar University </p>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+                      <div class="card">
+                          <img src="~/Site/assets/img/features-22.png" class="card-img-top" alt="...">
+                          <div class="card-icon">
+                              <i class="ri-calendar-check-line"></i>
+                          </div>
+                          <div class="card-body">
+                              <h5 class="card-title"><a href="">Conversations</a></h5>
+                              <p class="card-text">Lively conversation so that the student can understand and Our packages are suitable for all times in all countries </p>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
+                      <div class="card">
+                          <img src="~/Site/assets/img/features-12.png" class="card-img-top" alt="...">
+                          <div class="card-icon">
+                              <i class="ri-body-scan-line"></i>
+                          </div>
+                          <div class="card-body">
+                              <h5 class="card-title"><a href="">Our Plan</a></h5>
+                              <p class="card-text"> The student's level is determined in the first class, through a quick test in which we determine his level in the four language skills, reading, writing, speaking and listening. </p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+          </div>
+      </section><!-- End About Boxes Section -->
+      <!-- ======= Features Section ======= -->
+      <section id="features" class="features">
+          <div class="container" data-aos="fade-up">
+
+              <ul class="nav nav-tabs row d-flex">
+                  <li class="nav-item col-4">
+                      <a class="nav-link active show" data-bs-toggle="tab" href="#tab-1">
+                          <i class="ri-gps-line"></i>
+                          <h4 class="d-none d-lg-block">Arabic</h4>
+                      </a>
+                  </li>
+                  <li class="nav-item col-4">
+                      <a class="nav-link" data-bs-toggle="tab" href="#tab-2">
+                          <i class="ri-body-scan-line"></i>
+                          <h4 class="d-none d-lg-block">The Holy Quran</h4>
+                      </a>
+                  </li>
+                  <li class="nav-item col-4">
+                      <a class="nav-link" data-bs-toggle="tab" href="#tab-3">
+                          <i class="ri-sun-line"></i>
+                          <h4 class="d-none d-lg-block">Islamic Education</h4>
+                      </a>
+                  </li>
+                 
+              </ul>
+
+              <div class="tab-content">
+                  <div class="tab-pane active show" id="tab-1">
+                      <div class="row">
+                          <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
+                              <h3><br />the Arabic language is the language of the Qur’an.</h3>
+                              <p class="fst-italic">
+                                  Therefore, in our keenness to spread the teaching of the Arabic language, we try hard to provide the available means in order to be able to teach children and adults this language, and as we know that children who grow up in these environments do not speak the Arabic language and may find it difficult to learn it. Therefore, we, Start Ayat Academy, provided easy ways to teach This language so we saved
+                              </p>
+                              <ul>
+                                  <li><i class="ri-check-double-line"></i>Teachers who excel in teaching the Arabic language and graduated from Al-Azhar University.</li>
+                                  <li><i class="ri-check-double-line"></i>The teachers also speak English and French fluently so that they can communicate with the children.</li>
+                                  <li><i class="ri-check-double-line"></i>There is also a follow-up from the administration to facilitate the attendance process and provide entertainment ways for children to enjoy attending with us.</li>
+                              </ul>
+                              <p>
+                                  The language of the Qur’an and the language of the people of Paradise is from a foremost aspect that Muslims should be keen to learn and brag about in it, because God singled it out in the language of the Qur’an, as God Almighty said in His Book (with a clear Arabic tongue).
+                              </p>
+                          </div>
+                          <div class="col-lg-6 order-1 order-lg-2 text-center">
+                              <img style=" width: 385px;" src="~/Site/assets/img/features-1.png" alt="" class="img-fluid">
+                          </div>
+                      </div>
+                  </div>
+                  <div class="tab-pane" id="tab-2">
+                      <div class="row">
+                          <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
+                              <h3><br />God singled out our Master Muhammad for the Noble Qur’an</h3>
+                              <p>
+                                  The Qur’an is verses and miracles, some of which are cosmic signs that indicate the greatness of God, and some of them are etiquette and morals that a Muslim learns, including challenges for those with the Arabic language. To this day, the world discovers miracles, but they discover that the Holy Qur’an has mentioned them since ancient times, and the Qur’an relaxes the heart and mind and heals the hearts of believers. The Qur’an from childhood, because it is the method of the Muslim in his life for that
+                              </p>
+                              <p class="fst-italic">
+                                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                                  magna aliqua.
+                              </p>
+                              <ul>
+                                  <li><i class="ri-check-double-line"></i> Our teachers are graduates from Al-Azhar University and hold a license in the Holy Quran</li>
+                                  <li><i class="ri-check-double-line"></i> They are also fluent in teaching Tajweed in English and French</li>
+                                  <li><i class="ri-check-double-line"></i> Provident mollitia neque rerum asperiores dolores quos qui a. Ipsum neque dolor voluptate nisi sed.</li>
+                                  <li><i class="ri-check-double-line"></i> There is also an explanation of the meanings of the verses and the reasons for revelation so that the student understands the meaning of what he reads and memorizes</li>
+                              </ul>
+                              <p>
+                                  The Prophet, may God’s prayers and peace be upon him, said to Ali bin Talib, may God be pleased with him, that God guides for you a man better than a red camel.
+                                  Therefore, we want you to have the honor of guiding your children to teach the Qur’an, because the memorizer of the Qur’an will have a great place on the Day of Resurrection, as stated in the command of the Messenger, may God bless him and grant him peace. And may God’s prayers and peace be upon him: Whoever recites the Qur’an and acts according to it, his parents will be given a crown on the Day of Resurrection
+                              </p>
+                          </div>
+                          <div class="col-lg-6 order-1 order-lg-2 text-center">
+                              <img style="height: 755px;" src="~/Site/assets/img/features-3.png" alt="" class="img-fluid">
+                          </div>
+                      </div>
+                  </div>
+                  <div class="tab-pane" id="tab-3">
+                      <div class="row">
+                          <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
+                              <h3>Etiquette, ethics, and dealing with people, </h3>
+                              <p>
+                                  The Messenger, may God’s prayers and peace be upon him, is the best educational teacher, and he taught Muslims the meaning of morals and their dealings with others, and he was always keen to raise Muslims to deal well with fathers and mothers. That is why the Prophet said when a man asked him, “Who is the most deserving of my companions?” He said, “Your mother.” He said, “Then who?” He said, “Your mother.” He said, “Then who.” He said, “Your mother.” He said, “Then who?” He said, “Then your father.” So if a Muslim behaves well with his father and mother, he behaves well with others.
+                              </p>
+                              <ul>
+                                  <li><i class="ri-check-double-line"></i> Teachers are keen on the student's commitment to maintaining prayer and politeness with his father and mother and dealing with others</li>
+                                  <li><i class="ri-check-double-line"></i> There are also special books for children and systematic books for adults</li>
+                                  <li><i class="ri-check-double-line"></i> Children's books are also integrated with moral images so that the Muslim child can benefit from them</li>
+                              </ul>
+                              <p class="fst-italic">
+                                  The Prophet, may God’s prayers and peace be upon him, was the character of the Qur’an, so it is obligatory for us to abide by the morals of the Prophet, may God’s prayers and peace be upon him, and as it was reported on the authority of Omar Ibn Al-Khattab that throughout his Islamic life he memorized Surat Al-Baqara only. Which of the verses of Surat Al-Qur’an I used to work with and implement its rulings, and when I adhered to it, I memorized the ones after it
+                                  These are people who have preserved the Qur’an and religion in their hearts. May God gather us with them on the Day of Resurrection, God willing
+
+                              </p>
+                          </div>
+                          <div class="col-lg-6 order-1 order-lg-2 text-center">
+                              <img style="height: 556px;" src="~/Site/assets/img/features-2.png" alt="" class="img-fluid">
+                          </div>
+                      </div>
+                  </div>
+               
+              </div>
+
+          </div>
+      </section><!-- End Features Section -->
+      <!-- ======= Services Section ======= -->
+      <section id="services" class="services section-bg">
+          <div class="container" data-aos="fade-up">
+
+              <div class="section-title">
+                  <h2>Services</h2>
+                  <p>Check our Services</p>
+              </div>
+
+              <div class="row" data-aos="fade-up" data-aos-delay="200">
+                  <div class="col-md-6">
+                      <div class="icon-box">
+                          <i class="bi bi-laptop"></i>
+                          <h4><a href="#">Prophet's hadith</a></h4>
+                          <p>Introducing students to the difference between the texts of the Holy Quran and the texts of the Sunnah, and giving them the ability to differentiate between them</p>
+                      </div>
+                  </div>
+                  <div class="col-md-6 mt-4 mt-md-0">
+                      <div class="icon-box">
+                          <i class="bi bi-bar-chart"></i>
+                          <h4><a href="#">Jurisprudence subject</a></h4>
+                          <p>Training students to derive rulings from the Holy Quran and the Prophet’s Sunnah in an innovative way that will help them memorize the rulings of the Holy Quran</p>
+                      </div>
+                  </div>
+                  <div class="col-md-6 mt-4 mt-md-0">
+                      <div class="icon-box">
+                          <i class="bi bi-brightness-high"></i>
+                          <h4><a href="#">Islamic faith</a></h4>
+                          <p>Believing that God alone has the right to legislate so that female students are brought up to reject all ideas and superstitions that are contrary to Islam.</p>
+
+                      </div>
+                  </div>
+                  <div class="col-md-6 mt-4 mt-md-0">
+                      <div class="icon-box">
+                          <i class="bi bi-briefcase"></i>
+                          <h4><a href="#">Ethics and politeness </a></h4>
+                          <p>The learner should familiarize himself with selected texts related to the basics of daily dealings with others (peace etiquette, visits, councils...)</p>
+
+                      </div>
+                  </div>
+                 
+              </div>
+
+          </div>
+      </section><!-- End Services Section -->
+      <!-- ======= Testimonials Section ======= -->
+      <section id="testimonials" class="testimonials">
+          <div class="container" data-aos="zoom-in">
+
+              <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
+                  <div class="swiper-wrapper">
+
+                      <div class="swiper-slide">
+                          <div class="testimonial-item">
+                              <img src="~/Site/assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
+                              <h3>Sarah Radwan</h3>
+                              <h4>Student</h4>
+                              <p>
+                                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                                  I love Bakr Quran Academy because I love studying with my teacher who teaches us the Holy Quran and the Arabic language, me and my little brother, and he plays with us nicely and always smiles and makes us smile                                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                              </p>
+                          </div>
+                      </div><!-- End testimonial item -->
+
+                      <div class="swiper-slide">
+                          <div class="testimonial-item">
+                              <img src="~/Site/assets/img/testimonials/testimonials-4.png" class="testimonial-img" alt="">
+                              <h3>Nada khalid</h3>
+                              <h4>Student</h4>
+                              <p>
+                                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                                  For the first time, I try online education at home. In fact, it is an exciting and unique experience that saved me a lot of time and also helped me use my free time for useful things. The teacher is excellent and I want my children to do more lessons.                                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                              </p>
+                          </div>
+                      </div><!-- End testimonial item -->
+
+                      <div class="swiper-slide">
+                          <div class="testimonial-item">
+                              <img src="~/Site/assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
+                              <h3>Abdelrahman yassen</h3>
+                              <h4>Student</h4>
+                              <p>
+                                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                                  My son has been with the Bakr Quran Academy Foundation for about three months, on the Internet only. We are in Canada and the institution is in Cairo. My son is seven years old and was born in Canada. By virtue of our residence in Canada, he never knows the letters or the Holy Qur’an at all. Praise be to God. I put my trust in God and you registered with this institution. Praise be to God, my son now knows all the letters and memorized a number of surahs from the Holy Qur’an. Praise be to God, my son is in the stage of collecting words. This is a great achievement for my son because he is late in speaking and does not focus on distraction. And the treatment of teachers and the principal is at the top of morals, decency and respect.
+                                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                              </p>
+                          </div>
+                      </div><!-- End testimonial item -->
+
+
+                  </div>
+                  <div class="swiper-pagination"></div>
+              </div>
+
+          </div>
+      </section><!-- End Testimonials Section -->
+      <!-- ======= Team Section ======= -->
+      <section id="team" class="team section-bg">
+          <div class="container" data-aos="fade-up">
+
+              <div class="section-title">
+                  <h2>Team</h2>
+                  <p>Check our Team</p>
+              </div>
+
+              <div class="row">
+
+                  <div class="col-lg-4 col-md-6">
+                      <div class="member" data-aos="fade-up" data-aos-delay="100">
+                          <div class="pic"><img src="~/Site/assets/img/team/team-1.jpg" class="img-fluid" alt=""></div>
+                          <div class="member-info">
+                              <h4>Walter White</h4>
+                              <span>Chief Executive Officer</span>
+                              <div class="social">
+                                  <a href=""><i class="bi bi-twitter"></i></a>
+                                  <a href=""><i class="bi bi-facebook"></i></a>
+                                  <a href=""><i class="bi bi-instagram"></i></a>
+                                  <a href=""><i class="bi bi-linkedin"></i></a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                      <div class="member">
+                          <div class="pic"><img src="~/Site/assets/img/team/team-2.jpg" class="img-fluid" alt=""></div>
+                          <div class="member-info">
+                              <h4>Sarah Jhonson</h4>
+                              <span>Product Manager</span>
+                              <div class="social">
+                                  <a href=""><i class="bi bi-twitter"></i></a>
+                                  <a href=""><i class="bi bi-facebook"></i></a>
+                                  <a href=""><i class="bi bi-instagram"></i></a>
+                                  <a href=""><i class="bi bi-linkedin"></i></a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                      <div class="member">
+                          <div class="pic"><img src="~/Site/assets/img/team/team-3.jpg" class="img-fluid" alt=""></div>
+                          <div class="member-info">
+                              <h4>William Anderson</h4>
+                              <span>CTO</span>
+                              <div class="social">
+                                  <a href=""><i class="bi bi-twitter"></i></a>
+                                  <a href=""><i class="bi bi-facebook"></i></a>
+                                  <a href=""><i class="bi bi-instagram"></i></a>
+                                  <a href=""><i class="bi bi-linkedin"></i></a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+              </div>
+
+          </div>
+      </section><!-- End Team Section -->
+      <!-- ======= Pricing Section ======= -->
+      <section id="Pricing" class="Pricing">
+          <div class="container" data-aos="fade-up">
+              <section id="pricing" class="pricing">
+                  <div class="container">
+                      <div class="section-title">
+                          <h2>Pricing</h2>
+                          <p>Check our Pricing</p>
+                      </div>
+                      <ul class="nav nav-tabs row d-flex">
+                          <li class="nav-item col-4">
+                              <a class="nav-link active show" data-bs-toggle="tab" href="#feat-1">
+                                  <i class="ri-gps-line"></i>
+                                  <h4 class="d-none d-lg-block">60 minutes</h4>
+                              </a>
+                          </li>
+                          <li class="nav-item col-4">
+                              <a class="nav-link" data-bs-toggle="tab" href="#feat-2">
+                                  <i class="ri-gps-line"></i>
+                                  <h4 class="d-none d-lg-block">45 minutes</h4>
+                              </a>
+                          </li>
+                          <li class="nav-item col-4">
+                              <a class="nav-link" data-bs-toggle="tab" href="#feat-3">
+                                  <i class="ri-gps-line"></i>
+                                  <h4 class="d-none d-lg-block">30 minutes</h4>
+                              </a>
+                          </li>
+
+                      </ul>
+
+                      <div class="tab-content">
+                          <div class="tab-pane active show" id="feat-1">
+                              <div class="row">
+                                  <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                                      <div class="box">
+                                          <h3>
+                                              First package
+                                          </h3>
+                                          <h4><sup>$</sup>30<span> / month</span></h4>
+                                          <ul style="text-align: left;">
+                                              <li><i class="bi bi-clock">  </i>lessons : 60 minutes</li>
+                                              <li><i class="bi bi-laptop">  </i>1 lessons per week</li>
+                                              <li><i class="bi bi-headset">  </i>Follow up all the month</li>
+
+                                              <!--<li class="na">Pharetra massa</li>
+                        <li class="na">Massa ultricies mi</li>-->
+                                          </ul>
+                                          <div class="btn-wrap">
+                                              <a href="#contact" class="btn-buy">Buy Now</a>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                                      <div class="box featured">
+                                          <h3>Second package</h3>
+                                          <h4><sup>$</sup>60<span> / month</span></h4>
+                                          <ul style="text-align: left;">
+                                              <li><i class="bi bi-clock">  </i>lessons : 60 minutes</li>
+                                              <li><i class="bi bi-laptop">  </i>2 lessons per week</li>
+                                              <li><i class="bi bi-headset">  </i>Follow up all the month</li>
+
+                                              <!--<li class="na">Pharetra massa</li>
+                        <li class="na">Massa ultricies mi</li>-->
+                                          </ul>
+                                          <div class="btn-wrap">
+                                              <a href="#contact" class="btn-buy">Buy Now</a>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                                      <div class="box">
+                                          <h3>Third package</h3>
+                                          <h4><sup>$</sup>90<span> / month</span></h4>
+                                          <ul style="text-align: left;">
+                                              <li><i class="bi bi-clock">  </i>lessons : 60 minutes</li>
+                                              <li><i class="bi bi-laptop">  </i>3 lessons per week</li>
+                                              <li><i class="bi bi-headset">  </i>Follow up all the month</li>
+
+                                              <!--<li class="na">Pharetra massa</li>
+                        <li class="na">Massa ultricies mi</li>-->
+                                          </ul>
+                                          <div class="btn-wrap">
+                                              <a href="#contact" class="btn-buy">Buy Now</a>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-lg-3 col-md-6 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="400">
+                                      <div class="box">
+                                          <span class="advanced">Advanced</span>
+                                          <h3>Fourth package</h3>
+                                          <h4><sup>$</sup>120<span> / month</span></h4>
+                                          <ul style="text-align: left;">
+                                              <li><i class="bi bi-clock">  </i>lessons : 60 minutes</li>
+                                              <li><i class="bi bi-laptop">  </i>4 lessons per week</li>
+                                              <li><i class="bi bi-headset">  </i>Follow up all the month</li>
+
+                                          </ul>
+                                          <div class="btn-wrap">
+                                              <a href="#contact" class="btn-buy">Buy Now</a>
+                                          </div>
+                                      </div>
+                                  </div>
+
+                              </div>
+                          </div>
+                          <div class="tab-pane" id="feat-2">
+                              <div class="row">
+                                  <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                                      <div class="box">
+                                          <h3>
+                                              First package
+                                          </h3>
+                                          <h4><sup>$</sup>23<span> / month</span></h4>
+                                          <ul style="text-align: left;">
+                                              <li><i class="bi bi-clock">  </i>lessons : 45 minutes</li>
+                                              <li><i class="bi bi-laptop">  </i>1 lessons per week</li>
+                                              <li><i class="bi bi-headset">  </i>Follow up all the month</li>
+
+                                              <!--<li class="na">Pharetra massa</li>
+                        <li class="na">Massa ultricies mi</li>-->
+                                          </ul>
+                                          <div class="btn-wrap">
+                                              <a href="#contact" class="btn-buy">Buy Now</a>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                                      <div class="box featured">
+                                          <h3>Second package</h3>
+                                          <h4><sup>$</sup>46<span> / month</span></h4>
+                                          <ul style="text-align: left;">
+                                              <li><i class="bi bi-clock">  </i>lessons : 45 minutes</li>
+                                              <li><i class="bi bi-laptop">  </i>2 lessons per week</li>
+                                              <li><i class="bi bi-headset">  </i>Follow up all the month</li>
+
+                                              <!--<li class="na">Pharetra massa</li>
+                        <li class="na">Massa ultricies mi</li>-->
+                                          </ul>
+                                          <div class="btn-wrap">
+                                              <a href="#contact" class="btn-buy">Buy Now</a>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                                      <div class="box">
+                                          <h3>Third package</h3>
+                                          <h4><sup>$</sup>69<span> / month</span></h4>
+                                          <ul style="text-align: left;">
+                                              <li><i class="bi bi-clock">  </i>lessons : 45 minutes</li>
+                                              <li><i class="bi bi-laptop">  </i>3 lessons per week</li>
+                                              <li><i class="bi bi-headset">  </i>Follow up all the month</li>
+
+                                              <!--<li class="na">Pharetra massa</li>
+                        <li class="na">Massa ultricies mi</li>-->
+                                          </ul>
+                                          <div class="btn-wrap">
+                                              <a href="#contact" class="btn-buy">Buy Now</a>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-lg-3 col-md-6 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="400">
+                                      <div class="box">
+                                          <span class="advanced">Advanced</span>
+                                          <h3>Fourth package</h3>
+                                          <h4><sup>$</sup>92<span> / month</span></h4>
+                                          <ul style="text-align: left;">
+                                              <li><i class="bi bi-clock">  </i>lessons : 45 minutes</li>
+                                              <li><i class="bi bi-laptop">  </i>4 lessons per week</li>
+                                              <li><i class="bi bi-headset">  </i>Follow up all the month</li>
+
+                                          </ul>
+                                          <div class="btn-wrap">
+                                              <a href="#contact" class="btn-buy">Buy Now</a>
+                                          </div>
+                                      </div>
+                                  </div>
+
+                              </div>
+                          </div>
+                          <div class="tab-pane" id="feat-3">
+                              <div class="row">
+                                  <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                                      <div class="box">
+                                          <h3>
+                                              First package
+                                          </h3>
+                                          <h4><sup>$</sup>15<span> / month</span></h4>
+                                          <ul style="text-align: left;">
+                                              <li><i class="bi bi-clock">  </i>lessons : 30 minutes</li>
+                                              <li><i class="bi bi-laptop">  </i>1 lessons per week</li>
+                                              <li><i class="bi bi-headset">  </i>Follow up all the month</li>
+
+                                              <!--<li class="na">Pharetra massa</li>
+                        <li class="na">Massa ultricies mi</li>-->
+                                          </ul>
+                                          <div class="btn-wrap">
+                                              <a href="#contact" class="btn-buy">Buy Now</a>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                                      <div class="box featured">
+                                          <h3>Second package</h3>
+                                          <h4><sup>$</sup>30<span> / month</span></h4>
+                                          <ul style="text-align: left;">
+                                              <li><i class="bi bi-clock">  </i>lessons : 30 minutes</li>
+                                              <li><i class="bi bi-laptop">  </i>2 lessons per week</li>
+                                              <li><i class="bi bi-headset">  </i>Follow up all the month</li>
+
+                                              <!--<li class="na">Pharetra massa</li>
+                        <li class="na">Massa ultricies mi</li>-->
+                                          </ul>
+                                          <div class="btn-wrap">
+                                              <a href="#contact" class="btn-buy">Buy Now</a>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                                      <div class="box">
+                                          <h3>Third package</h3>
+                                          <h4><sup>$</sup>45<span> / month</span></h4>
+                                          <ul style="text-align: left;">
+                                              <li><i class="bi bi-clock">  </i>lessons : 30 minutes</li>
+                                              <li><i class="bi bi-laptop">  </i>3 lessons per week</li>
+                                              <li><i class="bi bi-headset">  </i>Follow up all the month</li>
+
+                                              <!--<li class="na">Pharetra massa</li>
+                        <li class="na">Massa ultricies mi</li>-->
+                                          </ul>
+                                          <div class="btn-wrap">
+                                              <a href="#contact" class="btn-buy">Buy Now</a>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-lg-3 col-md-6 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="400">
+                                      <div class="box">
+                                          <span class="advanced">Advanced</span>
+                                          <h3>Fourth package</h3>
+                                          <h4><sup>$</sup>60<span> / month</span></h4>
+                                          <ul style="text-align: left;">
+                                              <li><i class="bi bi-clock">  </i>lessons : 30 minutes</li>
+                                              <li><i class="bi bi-laptop">  </i>4 lessons per week</li>
+                                              <li><i class="bi bi-headset">  </i>Follow up all the month</li>
+
+                                          </ul>
+                                          <div class="btn-wrap">
+                                              <a href="#contact" class="btn-buy">Buy Now</a>
+                                          </div>
+                                      </div>
+                                  </div>
+
+                              </div>
+                          </div>
+                      </div>
+               
+                      </div>
+              </section>
+          </div>
+    </section><!-- End Pricing Section -->
+    <!-- ======= Contact Section ======= -->
+     <section id="contact" class="contact">
+            <div class="container" data-aos="fade-up">
+
+               <div class=" section-title">
+                    <h2>Contact</h2>
+                    <p>Contact Us</p>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-lg-6">
+
+                              <div class="row">
+                                  <div class="col-md-12">
+                                      <div class="info-box">
+                                          <i class="bx bx-map"></i>
+                                          <h3>Our Address</h3>
+                                          <p>Cairo - Egypt</p>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                      <div class="info-box mt-4">
+                                          <i class="bx bx-envelope"></i>
+                                          <h3>Email Us</h3>
+                                          <p>contact@start-quran.com<br>postman@bekr-alquran.com</p>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                      <div class="info-box mt-4">
+                                          <i class="bx bx-phone-call"></i>
+                                          <h3>Call Us</h3>
+                                          <p>+201061384005</p>
+                                      </div>
+                                  </div>
+                              </div>
+
+                          </div>
+
+                    <div class="col-lg-6 mt-4 mt-lg-0">
+
+                        <form asp-action="@ViewBag.ActionName" asp-controller="website" method="post" enctype="multipart/form-data" name="formRegister" onsubmit="return validateForm()" id="formRegister" role="form" class="php-email-form">
+                            <div class="row">
+                                <div class="col-md-6 mt-3  form-group">
+                                    <input asp-for="FullName" name="FullName" id="FullName" type="text"  class="form-control"  placeholder="Your Name" required>
+                                </div>
+                                <div class="col-md-6 form-group mt-3 ">
+                                    <input asp-for="PhoneNumber"  type="text" class="form-control" name="PhoneNumber" id="PhoneNumber" placeholder="Your Phone Number" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mt-3  form-group">
+                                    <input asp-for="WhatsApp" type="text" name="WhatsApp" class="form-control" id="WhatsApp" placeholder="Your WhatsApp" required>
+                                </div>
+                                <div class="col-md-6 form-group mt-3 ">
+                                    <select class="form-control" asp-for="CountryCode" name="CountryCode" id="CountryCode">
+                                            <option data-countryCode="US" value="1">USA (+1)</option>
+	                                        <option data-countryCode="GB" value="44" Selected>UK (+44)</option>
+	                                        <optgroup label="Other countries">
+		                                        <option data-countryCode="DZ" value="213">Algeria (+213)</option>
+		                                        <option data-countryCode="AD" value="376">Andorra (+376)</option>
+		                                        <option data-countryCode="AO" value="244">Angola (+244)</option>
+		                                        <option data-countryCode="AI" value="1264">Anguilla (+1264)</option>
+		                                        <option data-countryCode="AG" value="1268">Antigua &amp; Barbuda (+1268)</option>
+		                                        <option data-countryCode="AR" value="54">Argentina (+54)</option>
+		                                        <option data-countryCode="AM" value="374">Armenia (+374)</option>
+		                                        <option data-countryCode="AW" value="297">Aruba (+297)</option>
+		                                        <option data-countryCode="AU" value="61">Australia (+61)</option>
+		                                        <option data-countryCode="AT" value="43">Austria (+43)</option>
+		                                        <option data-countryCode="AZ" value="994">Azerbaijan (+994)</option>
+		                                        <option data-countryCode="BS" value="1242">Bahamas (+1242)</option>
+		                                        <option data-countryCode="BH" value="973">Bahrain (+973)</option>
+		                                        <option data-countryCode="BD" value="880">Bangladesh (+880)</option>
+		                                        <option data-countryCode="BB" value="1246">Barbados (+1246)</option>
+		                                        <option data-countryCode="BY" value="375">Belarus (+375)</option>
+		                                        <option data-countryCode="BE" value="32">Belgium (+32)</option>
+		                                        <option data-countryCode="BZ" value="501">Belize (+501)</option>
+		                                        <option data-countryCode="BJ" value="229">Benin (+229)</option>
+		                                        <option data-countryCode="BM" value="1441">Bermuda (+1441)</option>
+		                                        <option data-countryCode="BT" value="975">Bhutan (+975)</option>
+		                                        <option data-countryCode="BO" value="591">Bolivia (+591)</option>
+		                                        <option data-countryCode="BA" value="387">Bosnia Herzegovina (+387)</option>
+		                                        <option data-countryCode="BW" value="267">Botswana (+267)</option>
+		                                        <option data-countryCode="BR" value="55">Brazil (+55)</option>
+		                                        <option data-countryCode="BN" value="673">Brunei (+673)</option>
+		                                        <option data-countryCode="BG" value="359">Bulgaria (+359)</option>
+		                                        <option data-countryCode="BF" value="226">Burkina Faso (+226)</option>
+		                                        <option data-countryCode="BI" value="257">Burundi (+257)</option>
+		                                        <option data-countryCode="KH" value="855">Cambodia (+855)</option>
+		                                        <option data-countryCode="CM" value="237">Cameroon (+237)</option>
+		                                        <option data-countryCode="CA" value="1">Canada (+1)</option>
+		                                        <option data-countryCode="CV" value="238">Cape Verde Islands (+238)</option>
+		                                        <option data-countryCode="KY" value="1345">Cayman Islands (+1345)</option>
+		                                        <option data-countryCode="CF" value="236">Central African Republic (+236)</option>
+		                                        <option data-countryCode="CL" value="56">Chile (+56)</option>
+		                                        <option data-countryCode="CN" value="86">China (+86)</option>
+		                                        <option data-countryCode="CO" value="57">Colombia (+57)</option>
+		                                        <option data-countryCode="KM" value="269">Comoros (+269)</option>
+		                                        <option data-countryCode="CG" value="242">Congo (+242)</option>
+		                                        <option data-countryCode="CK" value="682">Cook Islands (+682)</option>
+		                                        <option data-countryCode="CR" value="506">Costa Rica (+506)</option>
+		                                        <option data-countryCode="HR" value="385">Croatia (+385)</option>
+		                                        <option data-countryCode="CU" value="53">Cuba (+53)</option>
+		                                        <option data-countryCode="CY" value="90392">Cyprus North (+90392)</option>
+		                                        <option data-countryCode="CY" value="357">Cyprus South (+357)</option>
+		                                        <option data-countryCode="CZ" value="42">Czech Republic (+42)</option>
+		                                        <option data-countryCode="DK" value="45">Denmark (+45)</option>
+		                                        <option data-countryCode="DJ" value="253">Djibouti (+253)</option>
+		                                        <option data-countryCode="DM" value="1809">Dominica (+1809)</option>
+		                                        <option data-countryCode="DO" value="1809">Dominican Republic (+1809)</option>
+		                                        <option data-countryCode="EC" value="593">Ecuador (+593)</option>
+		                                        <option data-countryCode="EG" value="20">Egypt (+20)</option>
+		                                        <option data-countryCode="SV" value="503">El Salvador (+503)</option>
+		                                        <option data-countryCode="GQ" value="240">Equatorial Guinea (+240)</option>
+		                                        <option data-countryCode="ER" value="291">Eritrea (+291)</option>
+		                                        <option data-countryCode="EE" value="372">Estonia (+372)</option>
+		                                        <option data-countryCode="ET" value="251">Ethiopia (+251)</option>
+		                                        <option data-countryCode="FK" value="500">Falkland Islands (+500)</option>
+		                                        <option data-countryCode="FO" value="298">Faroe Islands (+298)</option>
+		                                        <option data-countryCode="FJ" value="679">Fiji (+679)</option>
+		                                        <option data-countryCode="FI" value="358">Finland (+358)</option>
+		                                        <option data-countryCode="FR" value="33">France (+33)</option>
+		                                        <option data-countryCode="GF" value="594">French Guiana (+594)</option>
+		                                        <option data-countryCode="PF" value="689">French Polynesia (+689)</option>
+		                                        <option data-countryCode="GA" value="241">Gabon (+241)</option>
+		                                        <option data-countryCode="GM" value="220">Gambia (+220)</option>
+		                                        <option data-countryCode="GE" value="7880">Georgia (+7880)</option>
+		                                        <option data-countryCode="DE" value="49">Germany (+49)</option>
+		                                        <option data-countryCode="GH" value="233">Ghana (+233)</option>
+		                                        <option data-countryCode="GI" value="350">Gibraltar (+350)</option>
+		                                        <option data-countryCode="GR" value="30">Greece (+30)</option>
+		                                        <option data-countryCode="GL" value="299">Greenland (+299)</option>
+		                                        <option data-countryCode="GD" value="1473">Grenada (+1473)</option>
+		                                        <option data-countryCode="GP" value="590">Guadeloupe (+590)</option>
+		                                        <option data-countryCode="GU" value="671">Guam (+671)</option>
+		                                        <option data-countryCode="GT" value="502">Guatemala (+502)</option>
+		                                        <option data-countryCode="GN" value="224">Guinea (+224)</option>
+		                                        <option data-countryCode="GW" value="245">Guinea - Bissau (+245)</option>
+		                                        <option data-countryCode="GY" value="592">Guyana (+592)</option>
+		                                        <option data-countryCode="HT" value="509">Haiti (+509)</option>
+		                                        <option data-countryCode="HN" value="504">Honduras (+504)</option>
+		                                        <option data-countryCode="HK" value="852">Hong Kong (+852)</option>
+		                                        <option data-countryCode="HU" value="36">Hungary (+36)</option>
+		                                        <option data-countryCode="IS" value="354">Iceland (+354)</option>
+		                                        <option data-countryCode="IN" value="91">India (+91)</option>
+		                                        <option data-countryCode="ID" value="62">Indonesia (+62)</option>
+		                                        <option data-countryCode="IR" value="98">Iran (+98)</option>
+		                                        <option data-countryCode="IQ" value="964">Iraq (+964)</option>
+		                                        <option data-countryCode="IE" value="353">Ireland (+353)</option>
+		                                        <option data-countryCode="IL" value="972">Israel (+972)</option>
+		                                        <option data-countryCode="IT" value="39">Italy (+39)</option>
+		                                        <option data-countryCode="JM" value="1876">Jamaica (+1876)</option>
+		                                        <option data-countryCode="JP" value="81">Japan (+81)</option>
+		                                        <option data-countryCode="JO" value="962">Jordan (+962)</option>
+		                                        <option data-countryCode="KZ" value="7">Kazakhstan (+7)</option>
+		                                        <option data-countryCode="KE" value="254">Kenya (+254)</option>
+		                                        <option data-countryCode="KI" value="686">Kiribati (+686)</option>
+		                                        <option data-countryCode="KP" value="850">Korea North (+850)</option>
+		                                        <option data-countryCode="KR" value="82">Korea South (+82)</option>
+		                                        <option data-countryCode="KW" value="965">Kuwait (+965)</option>
+		                                        <option data-countryCode="KG" value="996">Kyrgyzstan (+996)</option>
+		                                        <option data-countryCode="LA" value="856">Laos (+856)</option>
+		                                        <option data-countryCode="LV" value="371">Latvia (+371)</option>
+		                                        <option data-countryCode="LB" value="961">Lebanon (+961)</option>
+		                                        <option data-countryCode="LS" value="266">Lesotho (+266)</option>
+		                                        <option data-countryCode="LR" value="231">Liberia (+231)</option>
+		                                        <option data-countryCode="LY" value="218">Libya (+218)</option>
+		                                        <option data-countryCode="LI" value="417">Liechtenstein (+417)</option>
+		                                        <option data-countryCode="LT" value="370">Lithuania (+370)</option>
+		                                        <option data-countryCode="LU" value="352">Luxembourg (+352)</option>
+		                                        <option data-countryCode="MO" value="853">Macao (+853)</option>
+		                                        <option data-countryCode="MK" value="389">Macedonia (+389)</option>
+		                                        <option data-countryCode="MG" value="261">Madagascar (+261)</option>
+		                                        <option data-countryCode="MW" value="265">Malawi (+265)</option>
+		                                        <option data-countryCode="MY" value="60">Malaysia (+60)</option>
+		                                        <option data-countryCode="MV" value="960">Maldives (+960)</option>
+		                                        <option data-countryCode="ML" value="223">Mali (+223)</option>
+		                                        <option data-countryCode="MT" value="356">Malta (+356)</option>
+		                                        <option data-countryCode="MH" value="692">Marshall Islands (+692)</option>
+		                                        <option data-countryCode="MQ" value="596">Martinique (+596)</option>
+		                                        <option data-countryCode="MR" value="222">Mauritania (+222)</option>
+		                                        <option data-countryCode="YT" value="269">Mayotte (+269)</option>
+		                                        <option data-countryCode="MX" value="52">Mexico (+52)</option>
+		                                        <option data-countryCode="FM" value="691">Micronesia (+691)</option>
+		                                        <option data-countryCode="MD" value="373">Moldova (+373)</option>
+		                                        <option data-countryCode="MC" value="377">Monaco (+377)</option>
+		                                        <option data-countryCode="MN" value="976">Mongolia (+976)</option>
+		                                        <option data-countryCode="MS" value="1664">Montserrat (+1664)</option>
+		                                        <option data-countryCode="MA" value="212">Morocco (+212)</option>
+		                                        <option data-countryCode="MZ" value="258">Mozambique (+258)</option>
+		                                        <option data-countryCode="MN" value="95">Myanmar (+95)</option>
+		                                        <option data-countryCode="NA" value="264">Namibia (+264)</option>
+		                                        <option data-countryCode="NR" value="674">Nauru (+674)</option>
+		                                        <option data-countryCode="NP" value="977">Nepal (+977)</option>
+		                                        <option data-countryCode="NL" value="31">Netherlands (+31)</option>
+		                                        <option data-countryCode="NC" value="687">New Caledonia (+687)</option>
+		                                        <option data-countryCode="NZ" value="64">New Zealand (+64)</option>
+		                                        <option data-countryCode="NI" value="505">Nicaragua (+505)</option>
+		                                        <option data-countryCode="NE" value="227">Niger (+227)</option>
+		                                        <option data-countryCode="NG" value="234">Nigeria (+234)</option>
+		                                        <option data-countryCode="NU" value="683">Niue (+683)</option>
+		                                        <option data-countryCode="NF" value="672">Norfolk Islands (+672)</option>
+		                                        <option data-countryCode="NP" value="670">Northern Marianas (+670)</option>
+		                                        <option data-countryCode="NO" value="47">Norway (+47)</option>
+		                                        <option data-countryCode="OM" value="968">Oman (+968)</option>
+		                                        <option data-countryCode="PW" value="680">Palau (+680)</option>
+		                                        <option data-countryCode="PA" value="507">Panama (+507)</option>
+		                                        <option data-countryCode="PG" value="675">Papua New Guinea (+675)</option>
+		                                        <option data-countryCode="PY" value="595">Paraguay (+595)</option>
+		                                        <option data-countryCode="PE" value="51">Peru (+51)</option>
+		                                        <option data-countryCode="PH" value="63">Philippines (+63)</option>
+		                                        <option data-countryCode="PL" value="48">Poland (+48)</option>
+		                                        <option data-countryCode="PT" value="351">Portugal (+351)</option>
+		                                        <option data-countryCode="PR" value="1787">Puerto Rico (+1787)</option>
+		                                        <option data-countryCode="QA" value="974">Qatar (+974)</option>
+		                                        <option data-countryCode="RE" value="262">Reunion (+262)</option>
+		                                        <option data-countryCode="RO" value="40">Romania (+40)</option>
+		                                        <option data-countryCode="RU" value="7">Russia (+7)</option>
+		                                        <option data-countryCode="RW" value="250">Rwanda (+250)</option>
+		                                        <option data-countryCode="SM" value="378">San Marino (+378)</option>
+		                                        <option data-countryCode="ST" value="239">Sao Tome &amp; Principe (+239)</option>
+		                                        <option data-countryCode="SA" value="966">Saudi Arabia (+966)</option>
+		                                        <option data-countryCode="SN" value="221">Senegal (+221)</option>
+		                                        <option data-countryCode="CS" value="381">Serbia (+381)</option>
+		                                        <option data-countryCode="SC" value="248">Seychelles (+248)</option>
+		                                        <option data-countryCode="SL" value="232">Sierra Leone (+232)</option>
+		                                        <option data-countryCode="SG" value="65">Singapore (+65)</option>
+		                                        <option data-countryCode="SK" value="421">Slovak Republic (+421)</option>
+		                                        <option data-countryCode="SI" value="386">Slovenia (+386)</option>
+		                                        <option data-countryCode="SB" value="677">Solomon Islands (+677)</option>
+		                                        <option data-countryCode="SO" value="252">Somalia (+252)</option>
+		                                        <option data-countryCode="ZA" value="27">South Africa (+27)</option>
+		                                        <option data-countryCode="ES" value="34">Spain (+34)</option>
+		                                        <option data-countryCode="LK" value="94">Sri Lanka (+94)</option>
+		                                        <option data-countryCode="SH" value="290">St. Helena (+290)</option>
+		                                        <option data-countryCode="KN" value="1869">St. Kitts (+1869)</option>
+		                                        <option data-countryCode="SC" value="1758">St. Lucia (+1758)</option>
+		                                        <option data-countryCode="SD" value="249">Sudan (+249)</option>
+		                                        <option data-countryCode="SR" value="597">Suriname (+597)</option>
+		                                        <option data-countryCode="SZ" value="268">Swaziland (+268)</option>
+		                                        <option data-countryCode="SE" value="46">Sweden (+46)</option>
+		                                        <option data-countryCode="CH" value="41">Switzerland (+41)</option>
+		                                        <option data-countryCode="SI" value="963">Syria (+963)</option>
+		                                        <option data-countryCode="TW" value="886">Taiwan (+886)</option>
+		                                        <option data-countryCode="TJ" value="7">Tajikstan (+7)</option>
+		                                        <option data-countryCode="TH" value="66">Thailand (+66)</option>
+		                                        <option data-countryCode="TG" value="228">Togo (+228)</option>
+		                                        <option data-countryCode="TO" value="676">Tonga (+676)</option>
+		                                        <option data-countryCode="TT" value="1868">Trinidad &amp; Tobago (+1868)</option>
+		                                        <option data-countryCode="TN" value="216">Tunisia (+216)</option>
+		                                        <option data-countryCode="TR" value="90">Turkey (+90)</option>
+		                                        <option data-countryCode="TM" value="7">Turkmenistan (+7)</option>
+		                                        <option data-countryCode="TM" value="993">Turkmenistan (+993)</option>
+		                                        <option data-countryCode="TC" value="1649">Turks &amp; Caicos Islands (+1649)</option>
+		                                        <option data-countryCode="TV" value="688">Tuvalu (+688)</option>
+		                                        <option data-countryCode="UG" value="256">Uganda (+256)</option>
+		                                        <!-- <option data-countryCode="GB" value="44">UK (+44)</option> -->
+		                                        <option data-countryCode="UA" value="380">Ukraine (+380)</option>
+		                                        <option data-countryCode="AE" value="971">United Arab Emirates (+971)</option>
+		                                        <option data-countryCode="UY" value="598">Uruguay (+598)</option>
+		                                        <!-- <option data-countryCode="US" value="1">USA (+1)</option> -->
+		                                        <option data-countryCode="UZ" value="7">Uzbekistan (+7)</option>
+		                                        <option data-countryCode="VU" value="678">Vanuatu (+678)</option>
+		                                        <option data-countryCode="VA" value="379">Vatican City (+379)</option>
+		                                        <option data-countryCode="VE" value="58">Venezuela (+58)</option>
+		                                        <option data-countryCode="VN" value="84">Vietnam (+84)</option>
+		                                        <option data-countryCode="VG" value="84">Virgin Islands - British (+1284)</option>
+		                                        <option data-countryCode="VI" value="84">Virgin Islands - US (+1340)</option>
+		                                        <option data-countryCode="WF" value="681">Wallis &amp; Futuna (+681)</option>
+		                                        <option data-countryCode="YE" value="969">Yemen (North)(+969)</option>
+		                                        <option data-countryCode="YE" value="967">Yemen (South)(+967)</option>
+		                                        <option data-countryCode="ZM" value="260">Zambia (+260)</option>
+		                                        <option data-countryCode="ZW" value="263">Zimbabwe (+263)</option>
+	                                        </optgroup>
+                                        </select>                                    </div>
+                            </div>
+                           
+                            <div class="form-group mt-3">
+                                <textarea asp-for="Message" class="form-control" name="Message" rows="5" placeholder="Message" required></textarea>
+                            </div>
+                           
+                            <div class="text-center mt-3 "><button type="submit" id="btnRegister">Send Message</button></div>
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6">
+            <div class="footer-info">
+                <h3>Bekr Al-Quran</h3>
+              <p>
+                A108 Adam Street <br>
+                NY 535022, Egypt<br><br>
+                <strong>Phone:</strong>+201061384005<br>
+                <strong>Email:</strong> contact@start-quran.com<br>
+              </p>
+              <div class="social-links mt-3">
+                <a href="https://twitter.com/bekralquran" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="https://www.facebook.com/bekralquran/" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="https://www.instagram.com/bekralquran/" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="https://www.linkedin.com/company/bekralquran" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+              <h4> Media Sites</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#hero">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#about">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#features">Services</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#team">Terms of service</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#Pricing">Packages</a></li>
+            </ul>
+          </div>
+
+
+
+          <div class="col-lg-4 col-md-6 footer-newsletter">
+              <h4>Social Media Sites</h4>
+              <p>You can communicate with us through social networking sites, and we will communicate with you directly after you leave a message</p>
+           
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Bekr Al-Quran</span></strong>. All Rights Reserved
+      </div>
+      <!--<div class="credits">-->
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/dewi-free-multi-purpose-html-template/ -->
+        <!--Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>-->
+    </div>
+  </footer><!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="~/Site/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="~/Site/assets/vendor/aos/aos.js"></script>
+  <script src="~/Site/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="~/Site/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="~/Site/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="~/Site/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="~/Site/assets/vendor/php-email-form/validate.js"></script>
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Template Main JS File -->
+    <script src="~/Site/assets/js/main.js"></script>
+    <script>
+       
+
+
+         $("#btnRegister").click(function () {
+            $("#formRegister").submit();
+
+        });
+      var message = '@messageTemp';
+        if (message) {
+            if (message == "Done") {
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'success',
+                    text: 'Save',
+                })
+
+            }
+            else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Have Issue ',
+                    text: 'Not Saved'
+                })
+            }
+        }
+
+
+
+   
+    function validateForm() {
+
+      let fname = document.forms["formRegister"]["FullName"].value;
+      let WhatsApp = document.forms["formRegister"]["WhatsApp"].value;
+      let PhoneNumber = document.forms["formRegister"]["PhoneNumber"].value;
+      if (fname == "") {
+        Swal.fire({
+          icon: 'error',
+          title: 'error',
+          text: 'Name Required',
+        })
+        return false;
+      }
+      else{
+        if (WhatsApp == "") {
+            Swal.fire({
+                icon: 'error',
+                title: 'error',
+                text: 'WhatsApp Required',
+            })
+            return false;
+            }
+            else{
+            if (PhoneNumber == "") {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'error',
+                    text: 'PhoneNumber Required',
+                })                        
+                return false;
+                }
+                else{
+                    return true;
+                }
+            }
+          
+      }
+    }
+
+   
+    </script>
+
+</body>
+
+</html>

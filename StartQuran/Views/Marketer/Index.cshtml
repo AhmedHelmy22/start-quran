@@ -1,0 +1,127 @@
+﻿@model IEnumerable<StartQuran.Service.MarketerService.Model.MarketerRM>
+
+@{
+    ViewData["Title"] = "المسوقين";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var messageTemp = TempData["AlertMessage"] ?? string.Empty;
+
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+
+<div class="modal fade" id="delete-conformation" tabindex="-1" role="dialog" aria-labelledby="deleteconformation">
+    <div class="modal-dialog" style="width:501px !important;margin:0 auto;">
+        <div class="modal-content">
+            <div class="modal-header" style="background:#d9534f;color:white;">
+                <h4 class="modal-title" id="delete-conformation">
+                    تاكيد الحذف
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <span>
+                                هل تريد حذف هذا المسوق بالفعل ؟
+                            </span>
+                         
+                            <input type="hidden" id="hiddenId" />
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">الغاء</button>
+                    <input type="submit" class="btn btn-danger" value="حذف" onclick="deleteData()" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="card">
+    <div class="card-header">
+        <button type="button" class="btn btn-block btn-outline-primary" onclick="CreateNew()">أضافة مسوق</button>
+
+        <h3 class="card-title"></h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped" data-page-length='100'>
+            <thead>
+                <tr style="text-align:center">
+                    <th>الاسم</th>
+                    <th>رقم التليفون</th>
+                    <th>المحافظه</th>
+                    
+                    <th>المرتب</th>
+                    <th>النسبه</th>
+                    <th>العمليات</th>
+                    @*<th hidden></th>*@
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+
+                    <tr style="text-align:center">
+
+                        <td>@item.fullName</td>
+                        <td>@item.phone</td>
+                        <td>@item.Governorate</td>
+                        <td>@item.Salary</td>
+                        <td>@item.Ratio%</td>
+                        <td>
+                            <a asp-action="Update" asp-route-id="@item.Id" title="تعديل" class="btn btn-success"><i class="fa fa-edit"></i> </a>
+                            <a asp-action="Students" asp-route-id="@item.Id" title="الطلاب" class="btn btn-secondary"><i class="fa fa-users"></i> </a>
+                            <a class="btn btn-danger" asp-controller="Marketer" asp-action="Delete" asp-route-id="@item.Id"  title="حذف" onclick = "return confirm('هل انت متأكد انك تريد حذف هذا العنصر ؟');"><i class="fa fa-trash"></i></a>
+                            <a class="btn btn-danger" asp-controller="Invoice" asp-action="Marketer" asp-route-id="@item.Id"  title="فاتوره"><i class="fas fa-file-invoice"></i></a>
+
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>
+<input type="hidden" id="hiddenId" />
+<script type="text/javascript">
+
+        //this is only display bootstrap modal pop up dialog
+        var deleteConfirm = function (val) {
+            //$('#deletedValueName').text(val);
+            $("#hiddenId").val=val;
+
+            $('#delete-conformation').modal('show');
+        }
+        //call this function after click on confirm delete button
+        var deleteData = function () {
+        //$('#divLoading').show();
+            var id = $('#hiddenId').val();
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Delete", "Marketer")',
+            data: { Id: id},
+            success: function (result) {
+               $("#delete-conformation").modal('hide');
+            },
+            error: function () {
+                $("#delete-conformation").modal('hide');
+            }
+        });
+       }
+
+    function CreateNew() {
+        window.location.assign('/Marketer/Create');
+
+    }
+   
+
+</script>

@@ -1,0 +1,161 @@
+﻿@model StartQuran.Service.InvoiceService.Model.InvoiceMarketer
+@{
+    ViewData["Title"] = "الفاتورة";
+    
+    var messageTemp = TempData["AlertMessage"] ?? string.Empty;
+
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<div style="background-color: white;direction:ltr;" class="invoice p-3 mb-3">
+    <!-- title row -->
+    <div class="row">
+        <div class="col-12">
+           
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- info row -->
+    <div class="row invoice-info">
+        <div class="col-sm-4 invoice-col">
+            <address>
+                <strong>Start Quran Academy.</strong><br>
+                Egypt, Cairo<br>
+                Phone: +201061384005 <br>
+                Email:contact@start-quran.com‬  
+            </address>
+        </div>
+         <div class="col-sm-4 invoice-col" style=" justify-content: center; display: flex; ">
+           <img style="width: 7px;" src="~/assets/img/StartQuran.PNG"/>
+           </div>
+        <!-- /.col -->
+        <div class="col-sm-4 invoice-col">
+            <address>
+
+                <strong>@Model.Marketer.fullName</strong><br>
+                Price Ratio : @Model.Marketer.Ratio %<br>
+               
+            </address>
+            <small >Date: @String.Format("{0: MMMM , yyyy}", @Model.date)</small>
+             <br />
+
+            <b>Payment Due:</b> <input type="date"  value="@Model.date" id="IncoiceDate" /><br>
+            <input hidden type="text" value="@Model.Marketer.Id" id="UserId" />
+        </div>
+        <!-- /.col -->
+        
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+    <!-- Table row -->
+    <div class="row">
+        <div class="col-12 table-responsive">
+            <table id="example1" class="table table-bordered table-striped" data-page-length='100'>
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>Section</th>
+                        <th>Hour</th>
+                        <th>Cash</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var item in Model.InvoiceStudent.OrderBy(c=>c.date).ToList())
+                    {
+                         <tr>
+                            <td>@item.Student.FullName</td>
+                            <td>@item.NumOfSection</td>
+                            <td>@item.NumOfHour</td>
+                            <td>@item.Cach</td>
+                           
+                         </tr>
+                 
+                    }
+                </tbody>
+            </table>
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+
+    <div class="row">
+        <!-- accepted payments column -->
+        <div class="col-md-6 col-12">
+                <img style="width: 230px;margin-bottom: 65px;" src="~/assets/img/StartQuran.PNG"/>
+        </div>
+        <!-- /.col -->
+        <div class="col-6">
+            <p class="lead">Amount Due :   @String.Format("{0: MMMM , yyyy}", @Model.date)</p>
+
+            <div class="table-responsive">
+                <table class="table">
+                    <tr>
+                        <th>Salary:</th>
+                        <td>LE @Model.Salary</td>
+                    </tr>
+                    <tr>
+                        <th>Rate:</th>
+                        <td>LE @Model.Cash</td>
+                    </tr>
+                    <tr>
+                        <th>Total:</th>
+                        <td>LE @Model.totalCash</td>
+                    </tr>
+                   
+                </table>
+            </div>
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+    <!-- this row will not appear when printing -->
+    <div class="row no-print">
+        <div class="col-12">
+            <a  onclick="PrintPage()" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
+            @*<button type="button" class="btn btn-success float-right">
+                <i class="far fa-credit-card"></i> Submit
+                Payment
+            </button>*@
+            
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+      var message = '@messageTemp';
+    if (message) {
+        if (message == "Done") {
+
+        }
+        else {
+            Swal.fire({
+                icon: 'error',
+                title: 'هناك مشكله',
+                text: 'لم يتم السماح لك لمشاهده هذه الفاتوره'
+            })
+        }
+    }
+
+    
+   
+</script>
+
+ <script>
+     function PrintPage(){
+          window.addEventListener(window.print());
+     }
+
+        $(function () {
+
+            $('#IncoiceDate').on('change', function () {
+                
+                var UserId = $('#UserId').val();
+
+                var date = $('#IncoiceDate').val();
+
+              var url = "/Invoice/MarketerDate?" + "Id=" + UserId + "&Date=" + date;
+
+              window.location.assign(url);
+
+            });
+        });
+ </script>

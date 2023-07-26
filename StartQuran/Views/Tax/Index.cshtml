@@ -1,0 +1,89 @@
+﻿@model StartQuran.Models.DataBase.Tax
+@using StartQuran.Models.Enums;
+@{  
+    ViewData["Title"] = "تعديل الضريبة";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var messageTemp = TempData["AlertMessage"] ?? string.Empty;
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- jquery validation -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                       
+                        <h3 class="card-title">تعديل الضريبة</h3>
+
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form asp-action="@ViewBag.ActionName" asp-controller="Tax" method="post" enctype="multipart/form-data" id="quickForm">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        @if (ViewBag.ActionName == "Update")
+                        {
+                            <input type="hidden" asp-for="ID" class="form-control" value="@Model.ID" />
+                        }
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="fullName">الضريبة</label>
+                                <input asp-for="tax" min="0" max="100" type="number" step="0.01" name="tax" class="form-control" id="fullName" placeholder="الضريبة">
+                            </div>
+                           
+
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <button id="btnSave" type="submit" class="btn btn-primary">حفظ</button>
+
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+                <button onclick="cancle()" style="float:right" class="btn btn-danger">رجوع</button>
+
+            </div>
+            <!--/.col (left) -->
+            <!-- right column -->
+            <div class="col-md-6">
+
+            </div>
+            <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script type="text/javascript">
+    $("#btnSave").click(function () {
+        $("#quickForm").submit();
+
+    });
+      var message = '@messageTemp';
+    if (message) {
+        if (message == "Done") {
+
+            Swal.fire({
+                icon: 'success',
+                title: 'عمل جيد',
+                text: 'تم الحفظ',
+            })
+
+        }
+        else {
+            Swal.fire({
+                icon: 'error',
+                title: 'هناك مشكله',
+                text: 'لم يتم الحفظ'
+            })
+        }
+    }
+    
+</script>

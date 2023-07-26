@@ -1,0 +1,164 @@
+﻿@model IEnumerable<StartQuran.Service.SupervisorService.Model.SupervisorRM>
+
+@{
+    ViewData["Title"] = "المشرفين";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var messageTemp = TempData["AlertMessage"] ?? string.Empty;
+
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+
+
+<div class="card">
+     <div class="card-header">
+        <button type="button" class="btn btn-block btn-outline-primary" onclick="CreateNew()">أضافة مشرف</button>
+
+        <h3 class="card-title"></h3>
+    </div>
+
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped" data-page-length='100'>
+            <thead>
+                <tr style="text-align:center">
+                    <th>الاسم</th>
+                    <th>رقم التليفون</th>
+                    <th>المحافظه</th>
+                    <th>العمليات</th>
+                    @*<th hidden></th>*@
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+
+                    <tr style="text-align:center">
+
+                        <td>@item.FullName</td>
+                        <td>@item.phone</td>
+                        <td>@item.Governorate</td>
+                        <td>
+                            <a asp-action="Update" asp-route-id="@item.Id" title="تعديل" class="btn btn-success"><i class="fa fa-edit"></i> </a>
+                            <a asp-action="Teacher" asp-route-id="@item.Id" title="المعلمون" class="btn btn-primary"><i class="fa fa-user"></i> </a>
+                            <a asp-action="Family" asp-route-id="@item.Id" title="العائلات" class="btn btn-secondary"><i class="fa fa-users"></i> </a>
+                            <a class="btn btn-danger" asp-controller="Supervisor" asp-action="Delete" asp-route-id="@item.Id"  title="حذف" onclick = "return confirm('هل انت متأكد انك تريد حذف هذا العنصر ؟');"><i class="fa fa-trash"></i></a>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>
+<input type="hidden" id="hiddenId" />
+<script type="text/javascript">
+
+        //this is only display bootstrap modal pop up dialog
+        var deleteConfirm = function (val) {
+            //$('#deletedValueName').text(val);
+            $("#hiddenId").val=val;
+
+            $('#delete-conformation').modal('show');
+        }
+        //call this function after click on confirm delete button
+        var deleteData = function () {
+        //$('#divLoading').show();
+            var id = $('#hiddenId').val();
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("Delete", "Supervisor")',
+            data: { Id: id},
+            success: function (result) {
+               $("#delete-conformation").modal('hide');
+            },
+            error: function () {
+                $("#delete-conformation").modal('hide');
+            }
+        });
+       }
+
+    @*function DeleteMassage() {
+        var Id = $("#hiddenId").val();
+
+        $.ajax({
+
+            type: "POST",
+            url: "/Supervisor/Delete",
+            data: { Id: Id },
+            success: function (result) {
+                //$("#modalDelete").hide();
+
+                $("#modalDelete").modal("hide");
+                window.location.assign('/Supervisor/Index');
+
+     var message = '@messageTemp';
+    if (message) {
+        if (message == "Done") {
+
+            Swal.fire({
+                icon: 'success',
+                title: 'عمل جيد',
+                text: 'تم الحفظ',
+            })
+
+        }
+        else if (message == "CanotDelete") {
+            Swal.fire({
+                icon: 'info',
+                title: 'هناك مشكله',
+                text: 'لا يمكن حذف المشرف هناك معلمون عليه',
+            })
+        }
+        else {
+            Swal.fire({
+                icon: 'error',
+                title: 'هناك مشكله',
+                text: 'لم يتم الحفظ'
+            })
+        }
+    }
+
+
+            }
+
+        })
+
+    }*@
+    function CreateNew() {
+        window.location.assign('/Supervisor/Create');
+
+    }
+    //function Remove(id) {
+    //    $("#hiddenId").val() = id;
+    //    $('#modalDelete').modal('show');
+    //    //$.SmartMessageBox({
+
+    //    //    title: "Delete",
+
+    //    //    content: "SureDelete",
+
+    //    //    buttons: '[Yes][No]'
+
+    //    //}, function (ButtonPressed) {
+
+    //    //    if (ButtonPressed === "Yes") {
+
+    //    //        DeleteClick(id, "Supervisor", 'ErrorMessage', 'SuccessMessage');
+    //    //        window.location.assign("/Supervisor/Index");
+
+    //    //    }
+    //    //    if (ButtonPressed === "No") {
+
+    //    //    }
+
+    //    //});
+    //}
+
+
+</script>

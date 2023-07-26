@@ -1,0 +1,325 @@
+﻿@model StartQuran.Models.DataBase.Section
+@using StartQuran.Models.Enums;
+@using Microsoft.AspNetCore.Identity
+@using StartQuran.Areas.Identity.Data
+@{
+    bool isadmin_supervisor = (User.IsInRole("ADMIN") || User.IsInRole("SUPERVISOR"));
+    if (ViewBag.ActionName == "Update")
+    {
+        ViewData["Title"] = "تعديل ";
+
+    }
+    {
+        ViewData["Title"] = "أضافة ";
+
+    }
+    var messageTemp = TempData["AlertMessage"] ?? string.Empty;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- jquery validation -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        @if (ViewBag.ActionName == "Update")
+                        {
+                            <h3 class="card-title">تعديل </h3>
+
+
+                        }
+                        else
+                        {
+                            <h3 class="card-title">أضافة </h3>
+
+
+                        }
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form asp-action="@ViewBag.ActionName" asp-controller="Section" method="post" enctype="multipart/form-data" id="quickForm">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        @if (ViewBag.ActionName == "Update")
+                        {
+                            <input type="hidden" asp-for="ID" class="form-control" value="@Model.ID" />
+                        }
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="FamilyId">العائلة</label>
+                            @*@if (ViewBag.ActionName == "Update" && Model.Student != null)
+                            {
+                                <select id="FamilyId" class="form-control select2" asp-for="@Model.Student.FamilyId" required asp-items="@ViewBag.Family">
+                                    <option value="null">أختر العائلة</option>
+
+                                </select>
+                            }
+                            else
+                            {*@
+                                <select id="FamilyId" class="form-control select2" required asp-items="@ViewBag.Family">
+                                    <option value="null">أختر العائلة</option>
+
+                                </select>
+                            @*}*@
+                        </div>
+                        <div class="form-group">
+                            <label for="StudentId">الطالب</label>
+                            @*@Html.DropDownList("StudentId", new SelectList(ViewBag.Student, "ID", "FullName", "StudentId"), "أختر الطالب", new { @class = "form-control select2 DropDownClass" })*@
+                            @if (ViewBag.ActionName == "Update")
+                            {
+                                <select id="StudentId" class="form-control select2" required name="StudentId" asp-for="StudentId" asp-items="@ViewBag.Student">
+                                    <option value="null">أختر الطالب</option>
+
+                                </select>
+                            }
+                            else
+                            {
+
+
+                                <select id="StudentId" class="form-control select2" disabled required name="StudentId" asp-for="StudentId" asp-items="@ViewBag.Student">
+                                    <option value="null">أختر الطالب</option>
+
+                                </select>
+                            }
+
+                        </div>
+                       @* <div class="form-group">
+                            <label for="TeacherId">المعلم</label>
+                            @if (ViewBag.ActionName == "Update")
+                            {
+                                <select id="TeacherId" class="form-control select2" required name="TeacherId" asp-for="TeacherId" asp-items="@ViewBag.Teacher">
+                                    <option value="null">أختر المعلم</option>
+
+                                </select>
+                            }
+                            else
+                            {
+                                <select id="TeacherId" class="form-control select2"  required name="TeacherId" asp-for="TeacherId" asp-items="@ViewBag.Teacher">
+                                    <option value="null">أختر المعلم</option>
+
+                                </select>
+                            }
+                        </div>*@
+                            @if (User.IsInRole("TEACHER"))
+                            {
+                                 <div class="form-group">
+                                    <label for="TeacherId">المعلم</label>
+                            
+                                        <select  class="form-control select2"  required name="TeacherId" asp-for="TeacherId" asp-items="@ViewBag.Teacher">
+                                            <option value="null">أختر المعلم</option>
+
+                                        </select>
+                            
+                                </div>
+                            }
+                            else
+                            {
+                                    
+                                 <div class="form-group">
+                                    <label for="TeacherId">المعلم</label>
+                            
+                                        <select id="TeacherId" class="form-control select2"  required name="TeacherId" asp-for="TeacherId" asp-items="@ViewBag.Teacher">
+                                            <option value="null">أختر المعلم</option>
+
+                                        </select>
+                            
+                                </div>
+                            }
+
+                       
+                        <div class="form-group">
+                            <label for="SectionDate">تاريخ الحصة</label>
+                            <input asp-for="SectionDate" type="date" name="SectionDate" class="form-control" id="SectionDate" placeholder="اختر تاريخ الحصة">
+                        </div>
+                        <div class="form-group">
+                            <label for="NumberOfHours">عدد ساعات الحصة</label>
+                            <select class="form-control select2" required name="NumberOfHours" asp-for="NumberOfHours">
+                                <option value="0">0</option>
+                                <option value="20">20</option>
+                                <option value="30">30</option>
+                                <option value="40">40</option>
+                                <option value="45">45</option>
+                                <option value="60">60</option>
+                                <option value="80">80</option>
+                                <option value="90">90</option>
+                                <option value="120">120</option>
+                                <option value="180">180</option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="form-group">
+                               <label for="Evaluation">التقيم</label>
+                                <select asp-for="Evaluation" class="form-control" asp-items="Html.GetEnumSelectList<Evaluation>()">
+                                </select>
+                            </div>
+                        <div class="form-group">
+                            <label for="Comment">اسم المادة</label>
+                            <textarea asp-for="Comment" type="text" name="Comment" class="form-control" id="Comment" placeholder="أكتب اسم المادة"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="Note">ملحوظة</label>
+                            <textarea asp-for="Note" type="text" name="Note" class="form-control" id="Note" placeholder="أكتب ملحوظة"></textarea>
+                        </div>
+                    </div>
+
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <button id="btnSave" type="submit" class="btn btn-primary">حفظ</button>
+
+                        </div>
+                    </form>
+
+                </div>
+                <!-- /.card -->
+                <button onclick="cancle()" style="float:right" class="btn btn-danger">رجوع</button>
+
+            </div>
+            <!--/.col (left) -->
+            <!-- right column -->
+            <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script type="text/javascript">
+    $("#btnSave").click(function () {
+        $("#quickForm").submit();
+
+    });
+      var message = '@messageTemp';
+    if (message) {
+        if (message == "Done") {
+
+            Swal.fire({
+                icon: 'success',
+                title: 'عمل جيد',
+                text: 'تم الحفظ',
+            })
+
+        }
+        else {
+            Swal.fire({
+                icon: 'error',
+                title: 'هناك مشكله',
+                text: 'لم يتم الحفظ'
+            })
+        }
+    }
+    function cancle() {
+        window.location.assign('/Section/Index');
+
+    }
+      $(function () {
+
+          $('#FamilyId').on('change', function () {
+              var familyIdValue = $('#FamilyId').val();
+                $.ajax({
+
+                    url: "/Section/StudentData",
+                    type: 'GET',
+                    dataType: 'json',
+                    cache: false,
+                    data:{id: familyIdValue},
+                    success: function (response) {
+                    console.log(response);
+                    if (response.error)
+                    {
+                        alert("error occurre");
+
+                            console.log(response.error);
+
+                    }
+                    else
+                    {
+                      var options = '<option value="null">أختر الطالب</option>';
+
+
+                        for (let i = 0; i < response.length; i++)
+                        {
+
+                            options += "<option value=" + response[i].id + ">" + response[i].fullName + "</option>"
+                            console.log(response[i].FullName);
+
+
+                            }
+                        $("#StudentId").html(options);
+                        $('#StudentId').attr('disabled', false);
+                       // alert("radwa");
+
+                    }
+
+                },
+                    error: function(req, status, error) {
+                        console.log();
+                       // alert("radwaerror");
+
+                }
+            });
+        });
+     });
+
+    $(function () {
+
+        $('#StudentId').on('change', function () {
+      
+        var StudentIdValue = $('#StudentId').val();
+            $.ajax({
+
+                url: "/Section/TeacherData",
+                type: 'GET',
+                dataType: 'json',
+                cache: false,
+                data: { id: StudentIdValue },
+                success: function (response) {
+                    console.log(response);
+                    if (response.error) {
+                        alert("error occurre");
+
+                        console.log(response.error);
+
+                    }
+                    else {
+                        
+                          
+                            
+                                var options = '<option value="null">أختر المعلم</option>';
+
+                                for (let i = 0; i < response.length; i++) {
+
+                                    options += "<option value=" + response[i].id + ">" + response[i].fullName + "</option>"
+                                    console.log(response[i].FullName);
+
+
+                                }
+                                $("#TeacherId").html(options);
+                            
+                             
+                           
+
+                    }
+
+                },
+                error: function (req, status, error) {
+                    console.log();
+                   
+
+                }
+            });
+    
+        });
+    });
+
+</script>

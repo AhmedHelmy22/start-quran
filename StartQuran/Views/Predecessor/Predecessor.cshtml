@@ -1,0 +1,114 @@
+﻿@model StartQuran.Models.DataBase.Predecessor
+@using StartQuran.Models.Enums;
+@{
+    ViewData["Title"] = " السلف ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var messageTemp = TempData["AlertMessage"] ?? string.Empty;
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- jquery validation -->
+                <div class="card card-primary">
+                    <div class="card-header">
+
+                        <h3 class="card-title"> السلف </h3>
+
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form asp-action="@ViewBag.ActionName" asp-controller="Predecessor" method="post" enctype="multipart/form-data" id="quickForm">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        @if (ViewBag.ActionName == "Update")
+                        {
+                            <input type="hidden" asp-for="ID" class="form-control" value="@Model.ID" />
+                        }
+
+                      <div class="card-body">
+
+                           <div class="form-group">
+                                <label for="TeacherId">المعلم</label>
+                                <select class="form-control select2" required name="TeacherId" asp-for="TeacherId" asp-items="@ViewBag.Teacher">
+                                    <option value="null">أختر المعلم</option>
+
+                                </select>
+
+                            </div>
+
+
+
+
+                            <div class="form-group">
+                                <label for="fullName">السلفة</label>
+                                <input asp-for="Cash" type="number" step="0.01" name="Cash" class="form-control" id="Cash" placeholder="السلفة">
+                            </div>
+                           
+
+                             <div class="form-group">
+                                <label for="fullName">تعليق</label>
+                                <input asp-for="Note" type="text" name="Note" class="form-control" id="Note" placeholder="تعليق">
+                            </div>
+
+
+                               <div class="form-group">
+                                <label for="SectionDate">تاريخ </label>
+                                <input asp-for="Date" type="date" name="Date" class="form-control" id="Date" placeholder="اختر تاريخ ">
+                             </div>
+                        </div>
+
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <button id="btnSave" type="submit" class="btn btn-primary">حفظ</button>
+
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+                <button onclick="cancle()" style="float:right" class="btn btn-danger">رجوع</button>
+
+            </div>
+            <!--/.col (left) -->
+            <!-- right column -->
+            <div class="col-md-6">
+
+            </div>
+            <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script type="text/javascript">
+    $("#btnSave").click(function () {
+        $("#quickForm").submit();
+
+    });
+      var message = '@messageTemp';
+    if (message) {
+        if (message == "Done") {
+
+            Swal.fire({
+                icon: 'success',
+                title: 'عمل جيد',
+                text: 'تم الحفظ',
+            })
+
+        }
+        else {
+            Swal.fire({
+                icon: 'error',
+                title: 'هناك مشكله',
+                text: 'لم يتم الحفظ'
+            })
+        }
+    }
+    
+</script>

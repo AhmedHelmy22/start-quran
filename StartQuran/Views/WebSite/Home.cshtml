@@ -1,0 +1,83 @@
+﻿@model IEnumerable<StartQuran.Models.DataBase.RegistrationFamily>
+
+@{
+    
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var messageTemp = TempData["AlertMessage"] ?? string.Empty;
+
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+<div class="card">
+    
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped" data-page-length='100'>
+            <thead>
+                <tr style="text-align:center">
+                    <th>الاسم</th>
+                    <th>واتس</th>
+                    <th> تلفون - كود البلد</th>
+                    <th>الرسالة</th>
+                    <th>تاريخ التسجيل</th>
+                    <th>العمليات</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    @if (item.Read)
+                    {
+                        <tr style="text-align:center ; background-color:indianred">
+                            <td>@item.FullName</td>
+                            <td>@item.WhatsApp</td>
+                            
+                            <td>(@item.CountryCode)@item.PhoneNumber</td>
+                            <td>@item.Message</td>
+                            <td>@String.Format("{0:dd, MMMM , yyyy}", @item.CreateDate)</td>
+                            <td>
+                               <a class="btn btn-sucsses" href="/website/IsRead/@item.ID" onclick = "return confirm('هل انت متأكد انك تواصلت مع العميل ؟');"><i class="fa fa-eye"></i></a>
+                                @if (User.IsInRole("ADMIN"))
+                                {   
+                                    <a class="btn btn-danger" href="/website/Delete/@item.ID" onclick = "return confirm('هل انت متأكد انك تريد حذف هذا العنصر ؟');"><i class="fa fa-trash"></i></a>
+                                }
+                          
+                            </td>
+                        </tr>
+                    }
+                    else{
+                         <tr style="text-align:center; background-color:lightgreen ">
+                            <td>@item.FullName</td>
+                            <td>@item.WhatsApp</td>
+                            <td>(@item.CountryCode)@item.PhoneNumber</td>
+                             <td>@item.Message</td>
+                            <td>@String.Format("{0:dd, MMMM , yyyy}", @item.CreateDate)</td>
+                            <td>
+                               <a class="btn btn-sucsses" asp-controller="website" asp-action="IsRead" asp-route-id="@item.ID"  onclick = "return confirm('هل انت متأكد انك تواصلت مع العميل ؟');"><i class="fa fa-eye"></i></a>
+
+                                <a class="btn btn-danger" asp-controller="website" asp-action="Delete" asp-route-id="@item.ID"   onclick = "return confirm('هل انت متأكد انك تريد حذف هذا العنصر ؟');"><i class="fa fa-trash"></i></a>
+                          
+                            </td>
+                        </tr>
+                    }
+                    
+
+                        
+                }
+            </tbody>
+
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>
+<input type="hidden" id="hiddenId" />
+<script src="~/Site/js/main.js"></script>
+<script type="text/javascript">
+       
+   
+    
+
+</script>

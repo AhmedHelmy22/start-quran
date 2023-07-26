@@ -1,0 +1,119 @@
+﻿@model StartQuran.Service.InvoiceService.Model.TotalFamilyInvoice
+@{
+    ViewData["Title"] = "الفاتورة";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="background-color: white;direction:ltr;" >
+    
+    <!-- Table row -->
+    <div class="row">
+        <div class="col-12 table-responsive">
+              <table id="example2" class="table table-bordered table-striped"  data-page-length='100'>
+                <thead>
+                    <tr style="text-align:center">
+                        <th>Family</th>
+                        <th>Section</th>
+                        <th>Hour</th>
+                        <th>Cash</th>
+                        <th><input type="date" value="@Model.date" id="DateInvoiceTotalFamily" /></th>
+                        <th>Phone</th>
+                        <th>ID Number</th>
+                        <th>Link</th>
+                        <th>WhatsApp Message</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var item in Model.InvoiceFamily)
+                    {
+                        if (item.NumOfSection > 0)
+                        {
+                             <tr style="text-align:center">
+                                <td>@item.Family.FullName</td>
+                                <td>@item.NumOfSection</td>
+                                <td>@item.NumOfHour</td>
+                                <td>@item.TotalPayMent</td>
+                                <td>
+                                     @if (User.IsInRole("ADMIN"))
+                                    {
+                                        <a class="btn btn-warning" asp-controller="Invoice" asp-action="Family" asp-route-id="@item.Family.ID"  title="الفاتورة"><i class="fas fa-file-invoice"></i></a>
+                                    }
+                                </td>
+                                <td>@item.Family.PhoneNumber</td>
+                                <td>@item.Family.IDNumber</td>
+                                <td>http://startquran-001-site1.atempurl.com/Invoice/Family?id=@item.Family.ID</td>
+                                <td><a href="https://api.whatsapp.com/send/?phone=@item.Family.PhoneNumber&text=@item.Message&type=phone_number&app_absent=0"><img  src="~/assets/img/WHATSAPP.gif" style="width:40px;height:40px;"></a></td>
+
+                             </tr>
+                        }
+
+                    }
+                </tbody>
+            </table>
+        </div>
+        <!-- /.col -->
+    </div>
+   
+    <!-- /.row -->
+
+    <div class="row" >
+        <!-- accepted payments column -->
+        <div class="col-6" hidden>
+            <p class="lead">Payment Methods:</p>
+            <img src="~/Design/dist/img/credit/visa.png" alt="Visa">
+            <img src="~/Design/dist/img/credit/mastercard.png" alt="Mastercard">
+            <img src="~/Design/dist/img/credit/american-express.png" alt="American Express">
+            <img src="~/Design/dist/img/credit/paypal2.png" alt="Paypal">
+
+            <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
+                Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem
+                plugg
+                dopplr jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.
+            </p>
+        </div>
+        <!-- /.col -->
+        <div class="col-6">
+              <p class="lead">Amount Due :   @String.Format("{0: MMMM , yyyy}", @Model.date)</p>
+
+            <div class="table-responsive">
+                <table class="table">
+                    <tr>
+                        <th style="width:50%">Hours:</th>
+                        <td>@Model.NumOfHour</td>
+                    </tr>
+                    <tr>
+                        <th style="width:50%">Section:</th>
+                        <td>@Model.NumOfSection</td>
+                    </tr>
+                    <tr>
+                        <th>Total:</th>
+                        <td>$@Model.TotalPayMent</td>
+                    </tr>
+                   
+                </table>
+            </div>
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+    <!-- this row will not appear when printing -->
+    <div class="row no-print">
+        <div class="col-12">
+            <a  onclick="PrintPage()" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
+            @*<button type="button" class="btn btn-success float-right">
+                <i class="far fa-credit-card"></i> Submit
+                Payment
+            </button>*@
+           
+        </div>
+    </div>
+</div>
+
+
+
+ <script>
+     function PrintPage(){
+          window.addEventListener(window.print());
+     }
+        
+ </script>

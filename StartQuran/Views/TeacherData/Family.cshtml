@@ -1,0 +1,56 @@
+﻿@model IEnumerable<StartQuran.Models.DataBase.Family>
+
+@{
+    ViewData["Title"] = "العائلات";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<div class="card">
+    <div class="card-header" style="text-align:center">
+
+        <h3 class="card-title">العائلات</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped" data-page-length='100'>
+            <thead>
+                <tr style="text-align:center">
+                    <th>الاسم</th>
+                    <th>المحافظه</th>
+                    <th>الولاية</th>
+                    <th>تاريخ الانضمام</th>
+               
+                    <th>العمليات</th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+
+                    <tr style="text-align:center">
+
+                        <td>@item.FullName</td>
+                        <td>@item.Governorate</td>
+                        <td>@item.state</td>
+                        <td>@item.CreateDate</td>
+                
+                        <td>
+                            <a asp-controller="TeacherData" asp-action="Students" asp-route-id="@item.ID" class="btn btn-primary"  title="الطلاب"><i class="fa fa-users"></i> </a>
+
+
+                        </td>
+              
+
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>
+
+

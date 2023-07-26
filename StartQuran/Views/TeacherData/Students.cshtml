@@ -1,0 +1,60 @@
+﻿@model IEnumerable<StartQuran.Models.DataBase.Student>
+
+@{
+    ViewData["Title"] = "الطلاب";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+}
+
+<div class="card">
+    <div class="card-header" style="text-align:center">
+
+        <h3 class="card-title">الطلاب</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped" data-page-length='100'>
+            <thead>
+                <tr style="text-align:center">
+                    <th>الاسم</th>
+                    <th>العائلة</th>
+                    <th>العمر</th>
+                    <th>النوع</th>
+                    <th>تاريخ الانضمام</th>
+               
+
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+
+                    <tr style="text-align:center">
+
+                        <td>@item.FullName</td>
+                        @if (item.Family != null)
+                        {
+                            <td>@item.Family.FullName</td>
+                        }
+                        else
+                        {
+                            <td></td>
+
+                        }
+                        <td>@item.Age</td>
+                        <td>@item.Gender</td>
+                        <td>@item.JoiningDate</td>
+                    
+
+             
+
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>

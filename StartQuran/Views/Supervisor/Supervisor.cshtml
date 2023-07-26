@@ -1,0 +1,144 @@
+﻿@model StartQuran.Service.SupervisorService.Model.SupervisorRM
+@using StartQuran.Models.Enums;
+@{
+    if (ViewBag.ActionName == "Update")
+    {
+        ViewData["Title"] = "تعديل المشرف";
+
+    }
+    else
+    {
+        ViewData["Title"] = "أضافة مشرف";
+
+    }
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var messageTemp = TempData["AlertMessage"] ?? string.Empty;
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- jquery validation -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        @if (ViewBag.ActionName == "Update")
+                        {
+                            <h3 class="card-title">تعديل مشرف</h3>
+
+
+                        }
+                        else
+                        {
+                            <h3 class="card-title">أضافة مشرف</h3>
+
+
+                        }
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form asp-action="@ViewBag.ActionName" asp-controller="Supervisor" method="post" enctype="multipart/form-data" id="quickForm">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        @if (ViewBag.ActionName == "Update")
+                        {
+                            <input type="hidden" asp-for="Id" class="form-control" value="@Model.Id" />
+                        }
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="fullName">الأسم</label>
+                                <input asp-for="FullName" type="text" name="fullName" class="form-control" id="fullName" placeholder="أكتب أسم المشرف">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">رقم المحمول</label>
+                                <input asp-for="phone" type="text" name="phone" class="form-control" id="phone" placeholder="أكتب رقم محمول المشرف">
+                            </div>
+                            <div class="form-group">
+                                <label for="Governorate">المحافظة</label>
+                                <input asp-for="Governorate" type="text" name="Governorate" class="form-control" id="Governorate" placeholder="أكتب المحافظة">
+                            </div>
+                            <div class="form-group">
+                                <label for="Gender">النوع</label>
+                                <select asp-for="Gender" class="form-control " asp-items="Html.GetEnumSelectList<Gender>()">
+                                </select>
+
+
+                            </div>
+                            <div class="form-group">
+                                <label for="Age">العمر</label>
+                                <input asp-for="Age" type="number" name="Age" class="form-control" id="Age" placeholder="أكتب العمر">
+                            </div>
+                            @if (ViewBag.ActionName != "Update")
+                            {
+                                <div class="form-group">
+                                    <label for="password">كلمه السر</label>
+                                    <input asp-for="password" type="password" name="password" class="form-control" id="password" placeholder="أكتب كلمه السر">
+                                </div>
+
+                            }
+
+
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <button id="btnSave" type="submit" class="btn btn-primary">حفظ</button>
+
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+                <button onclick="cancle()" style="float:right" class="btn btn-danger">رجوع</button>
+
+            </div>
+            <!--/.col (left) -->
+            <!-- right column -->
+            <div class="col-md-6">
+
+            </div>
+            <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script type="text/javascript">
+    $("#btnSave").click(function () {
+        $("#quickForm").submit();
+
+    });
+      var message = '@messageTemp';
+    if (message) {
+        if (message == "Done") {
+
+            Swal.fire({
+                icon: 'success',
+                title: 'عمل جيد',
+                text: 'تم الحفظ',
+            })
+
+        }
+       else if (message == "phoneExist") {
+            Swal.fire({
+                icon: 'error',
+                title: 'رقم التلفون موجود بالفعل',
+                text: 'لم يتم الحفظ'
+            })
+        }
+        else {
+            Swal.fire({
+                icon: 'error',
+                title: 'هناك مشكله',
+                text: 'لم يتم الحفظ'
+            })
+        }
+    }
+    function cancle() {
+        window.location.assign('/Supervisor/Index');
+
+    }
+</script>

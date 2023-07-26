@@ -1,0 +1,877 @@
+﻿
+@using Microsoft.AspNetCore.Identity
+@using StartQuran.Areas.Identity.Data
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewData["Title"] -ستارت قران</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/Design/plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="~/Design/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <link rel="stylesheet" href="~/Design/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="~/Design/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+
+    <!-- iCheck -->
+    <link rel="stylesheet" href="~/Design/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="~/Design/plugins/jqvmap/jqvmap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/Design/dist/css/adminlte.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="~/Design/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="~/Design/plugins/daterangepicker/daterangepicker.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="~/Design/plugins/summernote/summernote-bs4.min.css">
+    <link rel="stylesheet" href="~/Design/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/Design/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/Design/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+  <style>
+        .form-group{
+            width:50%;
+            
+        }
+        .card-body{
+            text-align: -webkit-center;
+        }
+        input{
+/*            background-color: #f8f9fa !important;
+*/            margin: 0px !important;
+            border-radius: 100px !important;
+            text-align:center;
+            background: linear-gradient(to left, #ffffff 21%, #00ccff 92%);
+            color:black;
+        }
+
+        select{
+            background: linear-gradient(to left, #ffffff 21%, #00ccff 92%);
+            color:black;
+            margin: 5px !important;
+            border-radius: 100px !important;
+            text-align:center;
+        }
+        .btn-primary{
+            background: linear-gradient(to left, #ffffff 21%, #00ccff 92%) !important;
+            color:black !important;
+            width: 130px !important;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+          background: linear-gradient(to left, #ffffff 21%, #00ccff 92%) !important;
+            color:black !important;
+            margin: 0px !important;
+            border-radius: 100px !important;
+            
+        }
+    </style>
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+
+        @if (User.IsInRole("ADMIN")||User.IsInRole("SUPERVISOR")||User.IsInRole("MARKETER")||User.IsInRole("TEACHER")||User.IsInRole("Moderator")){
+            <!-- Preloader -->
+        <div class="preloader flex-column justify-content-center align-items-center">
+            <img class="animation__shake" src="~/Design/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+        </div>
+
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <!-- Left navbar links -->
+
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a asp-area="" asp-controller="Home" asp-action="Index" class="nav-link">الصفحة الرئيسية</a>
+                </li>
+                <partial name="_LoginPartial" />
+
+
+            </ul>
+
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
+                <!-- Navbar Search -->
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="navbar-search" href="#" role="button">
+                        <i class="fas fa-search"></i>
+                    </a>
+                    <div class="navbar-search-block">
+                        <form class="form-inline">
+                            <div class="input-group input-group-sm">
+                                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                                <div class="input-group-append">
+                                    <button class="btn btn-navbar" type="submit">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                    <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </li>
+
+
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button">
+                        <i class="fas fa-th-large"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.navbar -->
+        <!-- Main Sidebar Container -->
+        <aside style="background-color:#05022e !important;" class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="/Home/Index" class="brand-link" style="justify-content: center; display: flex; ">
+                
+                <span class="brand-text font-weight-light"><img src="~/site/assets/img/Logo.png" style="height:170px"/></span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user panel (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        @*<img src="~/Design/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">*@
+                    </div>
+                    <div class="info">
+                        <a href="#" class="d-block">@User.Identity.Name</a>
+                    </div>
+                </div>
+
+              @*  <!-- SidebarSearch Form -->
+                <div class="form-inline">
+                    <div class="input-group" data-widget="sidebar-search">
+                        <input class="form-control form-control-sidebar" type="search" placeholder="بحث" aria-label="Search">
+                        <div class="input-group-append">
+                            <button class="btn btn-sidebar">
+                                <i class="fas fa-search fa-fw"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>*@
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+                       
+                        @if (User.IsInRole("ADMIN"))
+                        {
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-edit"></i>
+                                    <p>
+                                        الاعدادات
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="/Tax/Update" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>الضريبة</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/InvoiceConfirmation/Index" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p> شهور الفواتير</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        }
+                        @if (User.IsInRole("ADMIN") || User.IsInRole("SUPERVISOR")||User.IsInRole("Moderator"))
+                        {
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fa fa-users"></i>
+                                    <p>
+                                        الاشخاص
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    @if (User.IsInRole("ADMIN")||User.IsInRole("Moderator"))
+                                    {
+                                            @if (User.IsInRole("ADMIN"))
+                                            {
+
+                                            <li class="nav-item">
+                                                <a href="/Supervisor/Index" class="nav-link">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>المشرفون</p>
+                                                </a>
+                                            </li>
+                                          
+                                               @* <li class="nav-item">
+                                                    <a href="/Supervisor/Moderator" class="nav-link">
+                                                        <i class="far fa-circle nav-icon"></i>
+                                                        <p>المشرف العام</p>
+                                                    </a>
+                                                </li>
+
+                                                <li class="nav-item">
+                                                    <a href="/ModeratorSupervisor/Index" class="nav-link">
+                                                        <i class="far fa-circle nav-icon"></i>
+                                                        <p>المشرف والمشرفين</p>
+                                                    </a>
+                                                </li>*@
+                                            }
+                                            
+                                    }
+                                    <li class="nav-item">
+                                        <a href="/Teacher/Index" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>المعلمون</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/Family/Index" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>العائلات</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/Student/Index" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>الطلاب</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/StudentTeacher/Index" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>الطلاب والمعلمون</p>
+                                        </a>
+                                    </li>
+                                        @if (User.IsInRole("ADMIN"))
+                                        {
+                                            <li class="nav-item">
+                                                <a href="/Marketer/Index" class="nav-link">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>المسوقين</p>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="/StudentMarketer/Index" class="nav-link">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>الطلاب و المسوقين</p>
+                                                </a>
+                                            </li>
+                                        }
+                                        
+
+                                </ul>
+                            </li>
+                        }
+                         @if (User.IsInRole("Moderator"))
+                        {
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fa fa-users"></i>
+                                    <p>
+                                        المتابعة والاشراف
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                   
+                                        <li class="nav-item">
+                                            <a href="/Supervisor/Supervisors" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>المشرفين</p>
+                                            </a>
+                                        </li>
+                                         <li class="nav-item">
+                                            <a href="/Supervisor/ModeratorTeacher" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>المعلمين</p>
+                                            </a>
+                                        </li>
+                                         <li class="nav-item">
+                                            <a href="/Supervisor/ModeratorFamily" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>العائلات</p>
+                                            </a>
+                                        </li>
+                                         <li class="nav-item">
+                                            <a href="/Supervisor/ModeratorStudents" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>الطلاب</p>
+                                            </a>
+                                        </li>
+                                       
+                                        <li class="nav-item">
+                                            <a href="/Supervisor/ModeratorStudentsTeacher" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>الطلاب والمعلمين</p>
+                                            </a>
+                                        </li>
+
+                                        
+                                  
+                                </ul>
+                            </li>
+                        }
+
+                       @* @if (User.IsInRole("TEACHER"))
+                        {
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fa fa-users"></i>
+                                    <p>
+                                        العائلات
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                   
+                                        <li class="nav-item">
+                                            <a href="/TeacherData/Family" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>العائلات</p>
+                                            </a>
+                                        </li>
+                                    
+                                  
+                                </ul>
+                            </li>
+                        }*@
+                        @if (User.IsInRole("MARKETER"))
+                        {
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fa fa-users"></i>
+                                    <p>
+                                        اشخاص
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                   
+                                        <li class="nav-item">
+                                            <a href="/Marketer/Students" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>الطلاب</p>
+                                            </a>
+                                        </li>
+                                    
+                                  
+                                </ul>
+                            </li>
+
+                             <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fa fa-users"></i>
+                                    <p>
+                                        حسابات
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                   
+                                        <li class="nav-item">
+                                            <a href="/Invoice/Marketer" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>فاتوره</p>
+                                            </a>
+                                        </li>
+                                    
+                                  
+                                </ul>
+                            </li>
+                        }
+                        @if (User.IsInRole("ADMIN") || User.IsInRole("SUPERVISOR") || User.IsInRole("TEACHER")||User.IsInRole("Moderator"))
+                        {
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-edit"></i>
+                                    <p>
+                                        تسجيل الحصص
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="/Section/Index" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>الحصص</p>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+                             @if (User.IsInRole("ADMIN")||User.IsInRole("Moderator") ){
+                                    <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fa fa-lock"></i>
+                                        <p>
+                                            تغير كلمة المرور
+                                            <i class="fas fa-angle-left right"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a href="/Base/UpdatePassword" class="nav-link">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>تغير كلمة المرور</p>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </li>
+                                }
+                           
+                        }
+                        @if (User.IsInRole("TEACHER"))
+                        {
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fa fa-link"></i>
+                                    <p>
+                                        رابط الزوم
+                                        <i class="fas fa-angle-left right"></i>
+
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="/Teacher/Home" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>رابط الشرح</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+
+                        @if (User.IsInRole("ADMIN"))
+                            {
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-file-invoice"></i>
+                                    <p>
+                                        الفواتير
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="/Invoice/Students" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>الطلاب</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/Invoice/Familys" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>العائلات</p>
+                                        </a>
+                                    </li>
+                                     <li class="nav-item">
+                                        <a href="/Invoice/Teachers" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>المعلمون</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            }
+                        @if(User.IsInRole("ADMIN")|| User.IsInRole("SUPERVISOR")||User.IsInRole("Moderator")){
+                        //-----------------------------
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-link"></i>
+                                    <p>
+                                            السلف و الخصومات
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="/Predecessor/Index" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>الخصومات</p>
+                                        </a>
+                                    </li>
+                                    
+                                   
+                                </ul>
+                            </li>
+                        }
+                         @if (User.IsInRole("ADMIN"))
+                        {
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-link"></i>
+                                    <p>
+                                        روابط الفواتير
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="/Invoice/StudentLink" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>الطلاب</p>
+                                        </a>
+                                    </li>
+                                     <li class="nav-item">
+                                        <a href="/Invoice/FamilyLink" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>العائلات</p>
+                                        </a>
+                                    </li>
+                                   
+                                </ul>
+                            </li>
+                            //--------------------------------
+                          
+                        }
+                      
+                     @if (User.IsInRole("TEACHER"))
+                        {
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-link"></i>
+                                    <p>
+                                         الفواتير
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="/Invoice/Teacher" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>الفاتوره الشخصية</p>
+                                        </a>
+                                    </li>
+                                    
+                                   
+                                </ul>
+                            </li>
+
+                        }
+                      
+
+                        @if (User.IsInRole("ADMIN")|| User.IsInRole("SUPERVISOR")||User.IsInRole("Moderator"))
+                        {
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-link"></i>
+                                    <p>
+                                         الاشخاص المحذوفين 
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="/Family/FamilyDelete" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>العائلات </p>
+                                        </a>
+                                    </li>
+                                    
+                                    <li class="nav-item">
+                                        <a href="/Teacher/TeacherDeleted" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>المعلمين </p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        }
+                        @if (User.IsInRole("PROGRAMMER"))
+                        {
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-edit"></i>
+                                    <p>
+                                        الاعلانات
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                        <a href="/WebSite/Home" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>اولياء الامور الجدد</p>
+                                        </a>
+                                    </li>
+                              
+                                </ul>
+                            </li>
+
+                        }
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <!--<div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0">لوحة القيادة</h1>
+                        </div>-->
+                    <!-- /.col -->
+                    <!--<div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">الصفحة الرئيسية</a></li>
+                            <li class="breadcrumb-item active">لوحة القيادة</li>
+                        </ol>
+                    </div>-->
+                    <!-- /.col -->
+                    <!--</div>--><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    @RenderBody()
+
+
+                </div><!-- /.container-fluid -->
+            </section>
+            <!-- /.content -->
+        </div>
+        }
+
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+        <!-- /.content-wrapper -->
+        <footer class="main-footer" style="justify-content: center; display: flex;">
+            حقوق النشر  &copy; 2022-2021 <b>ستارت قران</b>. كل الحقوق محفوظة.
+            <div class="float-right d-none d-sm-inline-block">
+                @*<b>Version</b> 3.2.0-rc*@
+            </div>
+        </footer>
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+    <!-- jQuery -->
+
+    <script src="~/Design/plugins/jquery/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="~/Design/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- Bootstrap 4 -->
+    <script src="~/Design/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Select2 -->
+    <script src="~/Design/plugins/select2/js/select2.full.min.js"></script>
+    <!-- ChartJS -->
+    <script src="~/Design/plugins/chart.js/Chart.min.js"></script>
+    <!-- Sparkline -->
+    <script src="~/Design/plugins/sparklines/sparkline.js"></script>
+    <script src="~/Design/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Design/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/Design/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/Design/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="~/Design/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/Design/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+
+    <script src="~/Design/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="~/Design/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="~/Design/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+        <script src="~/Design/plugins/jszip/jszip.min.js"></script>
+    <script src="~/Design/plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="~/Design/plugins/pdfmake/vfs_fonts.js"></script>
+    <!-- JQVMap -->
+    @*<script src="~/Design/plugins/jqvmap/jquery.vmap.min.js"></script>
+    <script src="~/Design/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>*@
+    <!-- jQuery Knob Chart -->
+    <script src="~/Design/plugins/jquery-knob/jquery.knob.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="~/Design/plugins/moment/moment.min.js"></script>
+    <script src="~/Design/plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="~/Design/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Summernote -->
+    <script src="~/Design/plugins/summernote/summernote-bs4.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="~/Design/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/Design/dist/js/adminlte.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="~/Design/dist/js/demo.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="~/Design/dist/js/pages/dashboard.js"></script>
+    @RenderSection("Scripts", required: false)
+    <script>
+        $(function () {
+            $("#example1").DataTable({
+                "responsive": true, "lengthChange": false, "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+        });
+        $(function () {
+            //Initialize Select2 Elements
+            $('.select2').select2()
+
+            //Initialize Select2 Elements
+            $('.select2bs4').select2({
+                theme: 'bootstrap4'
+            })
+
+            //Datemask dd/mm/yyyy
+            $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+            //Datemask2 mm/dd/yyyy
+            $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+            //Money Euro
+            $('[data-mask]').inputmask()
+
+            //Date picker
+            $('#reservationdate').datetimepicker({
+                format: 'L'
+            });
+
+            //Date and time picker
+            $('#reservationdatetime').datetimepicker({ icons: { time: 'far fa-clock' } });
+
+            //Date range picker
+            $('#reservation').daterangepicker()
+            //Date range picker with time picker
+            $('#reservationtime').daterangepicker({
+                timePicker: true,
+                timePickerIncrement: 30,
+                locale: {
+                    format: 'MM/DD/YYYY hh:mm A'
+                }
+            })
+            //Date range as a button
+            $('#daterange-btn').daterangepicker(
+                {
+                    ranges: {
+                        'Today': [moment(), moment()],
+                        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                        'This Month': [moment().startOf('month'), moment().endOf('month')],
+                        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                    },
+                    startDate: moment().subtract(29, 'days'),
+                    endDate: moment()
+                },
+                function (start, end) {
+                    $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+                }
+            )
+
+            //Timepicker
+            $('#timepicker').datetimepicker({
+                format: 'LT'
+            })
+
+            //Bootstrap Duallistbox
+            $('.duallistbox').bootstrapDualListbox()
+
+            //Colorpicker
+            $('.my-colorpicker1').colorpicker()
+            //color picker with addon
+            $('.my-colorpicker2').colorpicker()
+
+            $('.my-colorpicker2').on('colorpickerChange', function (event) {
+                $('.my-colorpicker2 .fa-square').css('color', event.color.toString());
+            })
+
+            $("input[data-bootstrap-switch]").each(function () {
+                $(this).bootstrapSwitch('state', $(this).prop('checked'));
+            })
+
+        })
+      
+        $(function () {
+
+            $('#DateInvoiceTotalStudent').on('change', function () {
+                
+                var date = $('#DateInvoiceTotalStudent').val();
+              var url = "/Invoice/StudentsDate?" +  "&Date=" + date;
+
+              window.location.assign(url);
+
+            });
+        });
+
+         $(function () {
+
+            $('#DateInvoiceTotalFamily').on('change', function () {
+                
+                var date = $('#DateInvoiceTotalFamily').val();
+              var url = "/Invoice/FamilysDate?" +  "&Date=" + date;
+
+              window.location.assign(url);
+
+            });
+        });
+
+         $(function () {
+
+            $('#DateInvoiceTotalTeacher').on('change', function () {
+                
+                var date = $('#DateInvoiceTotalTeacher').val();
+              var url = "/Invoice/TeachersDate?" +  "&Date=" + date;
+
+              window.location.assign(url);
+
+            });
+        });
+     
+
+       
+    </script>
+
+    @*<script src="~/js/LoadNotfyMessage.js"></script>
+    <script src="~/js/DeleteScript.js"></script>
+    <script src="~/js/AlertMessageScript.js"></script>*@
+   
+</body >
+</html >

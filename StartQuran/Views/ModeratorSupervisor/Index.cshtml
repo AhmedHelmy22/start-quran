@@ -1,0 +1,112 @@
+﻿@model IEnumerable<tarteel.Service.ModeratorTeacherService.Model.ModeratorSupervisorRM>
+
+@{
+    ViewData["Title"] = "المشرفون العامه والمشرفون";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var messageTemp = TempData["AlertMessage"] ?? string.Empty;
+
+}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<div class="card">
+   
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped" data-page-length='100'>
+            <thead>
+                <tr style="text-align:center">
+                    <th>المشرف العام</th>
+                    <th>المشرف</th>
+                    <th>العمليات</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+
+                <tr style="text-align:center">
+
+                    @if (item.Moderator != null)
+                    {
+                        <td>@item.Moderator.FullName</td>
+                    }
+                    else
+                    {
+                        <td></td>
+
+                    }
+
+                    @if (item.Supervisor != null)
+                    {
+                        <td>@item.Supervisor.FullName</td>
+                    }
+                    else
+                    {
+                        <td></td>
+
+                    }
+                    <td>
+                      @*<a asp-action="Update" asp-route-id="@item.ID" class="btn btn-success"><i class="fa fa-edit"></i> </a>*@
+                     <a asp-controller="ModeratorSupervisor" asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger"  title="حذف" onclick = "return confirm('هل انت متأكد انك تريد حذف هذا العنصر ؟');"><i class="fa fa-trash"></i></a>
+
+                    </td>
+
+                </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>
+<script>
+    function DeleteMassage() {
+
+
+
+        var Id = $("#hiddenId").val();
+
+        $.ajax({
+
+            type: "POST",
+            url: "/ModeratorSupervisor/Delete",
+            data: { id: Id },
+            success: function (result) {
+
+                $("#modal-default").modal("hide");
+                window.location.assign('/ModeratorSupervisor/Index');
+
+                     var message = '@messageTemp';
+                    if (message) {
+                        if (message == "Done") {
+
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'عمل جيد',
+                                text: 'تم الحذف',
+                            })
+
+                        }
+                        else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'هناك مشكله',
+                                text: 'لم يتم الحذف'
+                            })
+                        }
+                   }
+
+
+                            }
+
+        })
+
+    }
+    function CreateNew() {
+        window.location.assign('/ModeratorSupervisor/Create');
+
+    }
+</script>

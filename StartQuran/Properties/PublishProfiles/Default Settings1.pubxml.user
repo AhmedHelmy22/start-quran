@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword />
+    <History>False|2022-03-01T02:12:06.4820168Z;False|2022-03-01T04:06:17.2557463+02:00;False|2022-03-01T04:03:31.5127906+02:00;False|2022-03-01T03:59:20.2067808+02:00;</History>
+  </PropertyGroup>
+  <ItemGroup>
+    <EFMigrations Include="Salsabeel.Areas.Identity.Data.IdentityContext">
+      <Value>Server=DESKTOP-UB3DNQS\SQLEXPRESS%3bDatabase=Salsabeel%3bTrusted_Connection=True%3bMultipleActiveResultSets=true</Value>
+    </EFMigrations>
+  </ItemGroup>
+</Project>

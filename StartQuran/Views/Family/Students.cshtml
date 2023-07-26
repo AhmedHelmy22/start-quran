@@ -1,0 +1,149 @@
+﻿@model IEnumerable<StartQuran.Models.DataBase.Student>
+
+@{
+    ViewData["Title"] = "الطلاب";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var messageTemp = TempData["AlertMessage"] ?? string.Empty;
+
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<div class="modal fade" id="modal-default">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">حذف الطالب</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>متاكد من أنك تريد حذف هذا الطالب ؟</p>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">غلق</button>
+                <button type="button" class="btn btn-danger" onclick="DeleteMassage()">حذف</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<div class="card">
+    <div class="card-header">
+        <button type="button" class="btn btn-block btn-outline-primary" onclick="CreateNew()">أضافة طالب</button>
+
+        <h3 class="card-title"></h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped" data-page-length='100'>
+            <thead>
+                <tr style="text-align:center">
+                    <th>الاسم</th>
+                    <th>العائلة</th>
+                    <th>العمر</th>
+                    <th>النوع</th>
+                    <th>تاريخ الانضمام</th>
+                    @if (User.IsInRole("ADMIN"))
+                    {
+                        <th>رابط الدفع</th>
+                    }
+
+                    <th>العمليات</th>
+                    @*<th hidden></th>*@
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+
+                    <tr style="text-align:center">
+
+                        <td>@item.FullName</td>
+                        @if (item.Family != null)
+                        {
+                            <td>@item.Family.FullName</td>
+                        }
+                        else
+                        {
+                            <td></td>
+
+                        }
+                        <td>@item.Age</td>
+                        <td>@item.Gender</td>
+                        <td>@item.JoiningDate</td>
+                        @if (User.IsInRole("ADMIN"))
+                        {
+                            <td>@item.Paypal</td>
+                        }
+
+                    <td>
+                        <a asp-action="Update" asp-route-id="@item.ID" title="تعديل" class="btn btn-success"><i class="fa fa-edit"></i> </a>
+                        <a class="btn btn-primary" asp-controller="Family" asp-action="Teacher" asp-route-id="@item.ID"  title="المعلمون"><i class="fa fa-users"></i> </a>
+                        @if (User.IsInRole("ADMIN"))
+                        {
+                            <a class="btn btn-warning" asp-controller="Invoice" asp-action="Student" asp-route-id="@item.ID"  title="الفاتورة"><i class="fas fa-file-invoice"></i></a>
+                        }
+                        <a class="btn btn-danger" asp-controller="Student" asp-action="Delete" asp-route-id="@item.ID"  title="حذف" onclick="return confirm('هل انت متأكد انك تريد حذف هذا العنصر ؟');"><i class="fa fa-trash"></i></a>
+                    </td>
+                        @*<td hidden><input value="@item.ID" type="hidden" id="hiddenId" /></td>*@
+
+                    </tr>
+                    @*<input value="@item.Id" type="hidden" id="hiddenId" />*@
+                }
+            </tbody>
+
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>
+<script>
+    function DeleteMassage() {
+
+
+
+        var Id = $("#hiddenId").val();
+
+        $.ajax({
+
+            type: "POST",
+            url: "/Student/Delete",
+            data: { id: Id },
+            success: function (result) {
+
+                $("#modal-default").modal("hide");
+                window.location.assign('/Student/Index');
+
+                     var message = '@messageTemp';
+    if (message) {
+        if (message == "Done") {
+
+            Swal.fire({
+                icon: 'success',
+                title: 'عمل جيد',
+                text: 'تم الحفظ',
+            })
+
+        }
+        else {
+            Swal.fire({
+                icon: 'error',
+                title: 'هناك مشكله',
+                text: 'لم يتم الحفظ'
+            })
+        }
+    }
+
+
+            }
+
+        })
+
+    }
+    function CreateNew() {
+        window.location.assign('/Student/Create');
+
+    }
+</script>

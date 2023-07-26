@@ -1,0 +1,245 @@
+﻿@model StartQuran.Service.StudentTeacherService.Model.StudentTeacherRM
+
+@{
+
+    if (ViewBag.ActionName == "Update")
+    {
+        ViewData["Title"] = "تعديل ";
+
+    }
+    {
+        ViewData["Title"] = "أضافة ";
+
+    }
+    var messageTemp = TempData["AlertMessage"] ?? string.Empty;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- jquery validation -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        @if (ViewBag.ActionName == "Update")
+                        {
+                            <h3 class="card-title">تعديل </h3>
+
+
+                        }
+                        else
+                        {
+                            <h3 class="card-title">أضافة </h3>
+
+
+                        }
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form asp-action="@ViewBag.ActionName" asp-controller="StudentTeacher" method="post" enctype="multipart/form-data" id="quickForm">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        @if (ViewBag.ActionName == "Update")
+                        {
+                            <input type="hidden" asp-for="ID" class="form-control" value="@Model.ID" />
+                        }
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="FamilyId">العائلة</label>
+                                <select id="FamilyId" class="form-control select2" required name="FamilyId" asp-for="FamilyId" asp-items="@ViewBag.Family">
+                                    <option value="null">أختر العائلة</option>
+
+                                </select>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="StudentId">الطالب</label>
+                                @*@Html.DropDownList("StudentId", new SelectList(ViewBag.Student, "ID", "FullName", "StudentId"), "أختر الطالب", new { @class = "form-control select2 DropDownClass" })*@
+                                @if (ViewBag.ActionName == "Update")
+                                {
+                                    <select id="StudentId" class="form-control select2" required name="StudentId" asp-for="StudentId" asp-items="@ViewBag.Student">
+                                        <option value="null">أختر الطالب</option>
+
+                                    </select>
+                                    }
+                                else
+                                {
+
+
+                                    <select id="StudentId" class="form-control select2" disabled required name="StudentId" asp-for="StudentId" asp-items="@ViewBag.Student">
+                                        <option value="null">أختر الطالب</option>
+
+                                    </select>
+                                }
+                            </div>
+
+                            <div class="form-group">
+                                <label for="TeacherId">المعلم</label>
+                                <select class="form-control select2" required name="TeacherId" asp-for="TeacherId" asp-items="@ViewBag.Teacher">
+                                    <option value="null">أختر المعلم</option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <button id="btnSave" type="submit" class="btn btn-primary">حفظ</button>
+
+                        </div>
+                    </form>
+
+                </div>
+                <!-- /.card -->
+                <button onclick="cancle()" style="float:right" class="btn btn-danger">رجوع</button>
+
+            </div>
+            <!--/.col (left) -->
+            <!-- right column -->
+            <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script type="text/javascript">
+    $("#btnSave").click(function () {
+        $("#quickForm").submit();
+
+    });
+      var message = '@messageTemp';
+    if (message) {
+        if (message == "Done") {
+
+            Swal.fire({
+                icon: 'success',
+                title: 'عمل جيد',
+                text: 'تم الحفظ',
+            })
+
+        }
+        else if (message == "Exist") {
+
+            Swal.fire({
+                icon: 'error',
+                title: 'هناك مشكله',
+                text: 'هذا الطالب لدى المدرس بالفعل'
+            })
+
+        }
+        else {
+            Swal.fire({
+                icon: 'error',
+                title: 'هناك مشكله',
+                text: 'لم يتم الحفظ'
+            })
+        }
+    }
+    function cancle() {
+        window.location.assign('/StudentTeacher/Index');
+
+    }
+      $(function () {
+
+          $('#FamilyId').on('change', function () {
+              var familyIdValue = $('#FamilyId').val();
+                $.ajax({
+
+            url: "/StudentTeacher/StudentData",
+                    type: 'GET',
+                    dataType: 'json',
+                    cache: false,
+                    data:{id: familyIdValue},
+                    success: function (response) {
+                    console.log(response);
+                    if (response.error)
+                    {
+                        alert("error occurre");
+
+                            console.log(response.error);
+
+                    }
+                    else
+                    {
+                      var options = '<option value="null">أختر الطالب</option>';
+
+
+                        for (let i = 0; i < response.length; i++)
+                        {
+                            options += "<option value=" + response[i].id + ">" + response[i].fullName + "</option>"
+
+                            }
+                        $("#StudentId").html(options);
+                        $('#StudentId').attr('disabled', false);
+                       // alert("radwa");
+
+                    }
+
+                },
+                    error: function(req, status, error) {
+                        console.log();
+                       // alert("radwaerror");
+
+                }
+            });
+        });
+     });
+
+
+
+    ///////////////////////////////////////////////////////
+    //function FillStudent() {
+    //    var familyIdValue = $('#FamilyId').val();
+
+    //    console.log(familyIdValue);
+
+    //        $.ajax({
+
+    //            type: 'GET',
+
+    //            url: "/StudentTeacher/StudentData",
+
+    //            contentType: "application/json; charset=utf-8",
+
+    //            dataType: 'json',
+
+    //            data: { id: familyIdValue },
+
+    //            success: function (data) {
+    //                console.log(data);
+
+    //                if (data !== "Error") {
+
+    //                    $("#StudentId").html("");
+    //                    $(data).each(function () {
+    //                        $("#StudentId").append($("<option></option>").val(this.ID).html(this.FullName));
+    //                        $('#StudentId').attr('disabled', false);
+
+    //                    });
+    //                    //$.each(data, function (key, value) {
+                        
+
+    //                    //  $("#StudentId").append("<option  value='" + value.ID + "'>" + value.FullName + "</option>");
+    //                    //    $('#StudentId').attr('disabled', false);
+
+    //                    //});
+    //                }
+    //            },
+
+    //            error: function () {
+    //            }
+    //        });
+    //    }
+    
+</script>

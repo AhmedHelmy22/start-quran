@@ -1,0 +1,152 @@
+﻿@model StartQuran.Models.DataBase.Student
+@using StartQuran.Models.Enums;
+
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    if (ViewBag.ActionName == "Update")
+    {
+        ViewData["Title"] = "تعديل طالب";
+
+    }
+    else
+    {
+        ViewData["Title"] = "أضافة طالب";
+
+    }
+    var messageTemp = TempData["AlertMessage"] ?? string.Empty;
+}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- jquery validation -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        @if (ViewBag.ActionName == "Update")
+                        {
+                            <h3 class="card-title">تعديل طالب</h3>
+
+
+                        }
+                        else
+                        {
+                            <h3 class="card-title">أضافة طالب</h3>
+
+
+                        }
+
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form asp-action="@ViewBag.ActionName" asp-controller="Student" method="post" enctype="multipart/form-data" id="quickForm">
+
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        @if (ViewBag.ActionName == "Update")
+                        {
+                            <input type="hidden" asp-for="ID" class="form-control" value="@Model.ID" />
+                        }
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="FullName">الأسم</label>
+                                <input asp-for="FullName" type="text" name="FullName" class="form-control" id="FullName" placeholder="أكتب أسم الطالب">
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="Gender">النوع</label>
+                                <select asp-for="Gender" class="form-control select2" asp-items="Html.GetEnumSelectList<Gender>()">
+                                </select>
+
+
+                            </div>
+                            <div class="form-group">
+                                <label for="Age">العمر</label>
+                                <input asp-for="Age" type="number" name="Age" class="form-control" id="Age" placeholder="أكتب العمر">
+                            </div>
+                            <div class="form-group">
+                                <label for="FamilyId">العائلة</label>
+                                <select class="form-control select2" required name="FamilyId" asp-for="FamilyId" asp-items="@ViewBag.Family">
+                                    <option value="null">أختر عائلة</option>
+
+                                </select>
+
+                            </div>
+
+                          
+
+
+                            @if (User.IsInRole("ADMIN"))
+                            {
+                                  <div class="form-group">
+                                    <label for="PriceOfHour">السعر بالساعة</label>
+                                    <input asp-for="PriceOfHour" type="number" name="PriceOfHour" class="form-control" id="PriceOfHour" placeholder="أكتب السعر بالساعة">
+                                </div>
+                                 <div class="form-group">
+                                    <label for="EmailZoom">رابط الدفع</label>
+                                    <input asp-for="Paypal" type="text" name="Paypal" class="form-control" id="Paypal" placeholder="أكتب رابط الدفع">
+                                 </div>
+                            }
+
+
+
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <button id="btnSave" type="submit" class="btn btn-primary">حفظ</button>
+
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+                <button onclick="cancle()" style="float:right" class="btn btn-danger">رجوع</button>
+
+            </div>
+            <!--/.col (left) -->
+            <!-- right column -->
+            <div class="col-md-6">
+
+            </div>
+            <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script type="text/javascript">
+    $("#btnSave").click(function () {
+        $("#quickForm").submit();
+
+    });
+        var message = '@messageTemp';
+    if (message) {
+        if (message == "Done") {
+
+            Swal.fire({
+                icon: 'success',
+                title: 'عمل جيد',
+                text: 'تم الحفظ',
+            })
+
+        }
+        else {
+            Swal.fire({
+                icon: 'error',
+                title: 'هناك مشكله',
+                text: 'لم يتم الحفظ'
+            })
+        }
+    }
+    function cancle() {
+        window.location.assign('/Student/Index');
+
+    }
+</script>

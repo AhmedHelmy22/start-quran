@@ -1,0 +1,149 @@
+﻿@model StartQuran.Models.DataBase.Family
+@using StartQuran.Models.Enums;
+
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    if (ViewBag.ActionName == "Update")
+    {
+        ViewData["Title"] = "تعديل عائلة";
+
+    }
+    else
+    {
+        ViewData["Title"] = "أضافة عائلة";
+
+    }
+    var messageTemp = TempData["AlertMessage"] ?? string.Empty;
+}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- jquery validation -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        @if (ViewBag.ActionName == "Update")
+                        {
+                            <h3 class="card-title">تعديل عائلة</h3>
+
+
+                        }
+                        else
+                        {
+                            <h3 class="card-title">أضافة عائلة</h3>
+
+
+                        }
+                        <h3 class="card-title"></h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form asp-action="@ViewBag.ActionName" asp-controller="Family" method="post" enctype="multipart/form-data" id="quickForm">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        @if (ViewBag.ActionName == "Update")
+                        {
+                            <input type="hidden" asp-for="ID" class="form-control" value="@Model.ID" />
+                        }
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="FullName">الأسم</label>
+                                <input asp-for="FullName" type="text" name="FullName" class="form-control" id="FullName" placeholder="أكتب أسم العائلة">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="PhoneNumber">رقم المحمول</label>
+                                <input asp-for="PhoneNumber" type="text" name="PhoneNumber" class="form-control" id="PhoneNumber" placeholder="أكتب رقم المحمول">
+                            </div>
+                            <div class="form-group">
+                                <label for="Governorate">المحافظة</label>
+                                <input asp-for="Governorate" type="text" name="Governorate" class="form-control" id="Governorate" placeholder="أكتب المحافظة">
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label for="state">الولاية</label>
+                                <input asp-for="state" type="text" name="state" class="form-control" id="state" placeholder="أكتب الولاية">
+                            </div>
+                            <div class="form-group">
+                                <label for="SupervisorId">المشرف</label>
+                                <select class="form-control select2" required name="SupervisorId" asp-for="SupervisorId" asp-items="@ViewBag.Supervisors">
+                                    <option value="null">أختر المشرف</option>
+
+                                </select>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="state">رقم الهوية</label>
+                                <input asp-for="IDNumber" type="text" name="IDNumber" class="form-control" id="IDNumber" placeholder="أكتب رقم الهوية">
+                            </div>
+                             @if (User.IsInRole("ADMIN"))
+                            {
+                                 <div class="form-group">
+                                    <label for="EmailZoom">رابط الدفع</label>
+                                    <input asp-for="Paypal" type="text" name="Paypal" class="form-control" id="Paypal" placeholder="أكتب رابط الدفع">
+                                 </div>
+                            }
+
+
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <button id="btnSave" type="submit" class="btn btn-primary">حفظ</button>
+
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+                <button onclick="cancle()" style="float:right" class="btn btn-danger">رجوع</button>
+
+            </div>
+            <!--/.col (left) -->
+            <!-- right column -->
+            <div class="col-md-6">
+
+            </div>
+            <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script type="text/javascript">
+    $("#btnSave").click(function () {
+        $("#quickForm").submit();
+
+    });
+      var message = '@messageTemp';
+    if (message) {
+        if (message == "Done") {
+
+            Swal.fire({
+                icon: 'success',
+                title: 'عمل جيد',
+                text: 'تم الحفظ',
+            })
+
+        }
+        else {
+            Swal.fire({
+                icon: 'error',
+                title: 'هناك مشكله',
+                text: 'لم يتم الحفظ'
+            })
+        }
+    }
+    function cancle() {
+        window.location.assign('/Family/Index');
+
+    }
+</script>
